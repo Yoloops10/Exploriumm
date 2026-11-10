@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f8fd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14222b" media="(prefers-color-scheme: dark)">
+<meta name="description" content="EXPLORIUM, club de sciences, de programmation, de robotique, de data science et de cybersécurité. Découvre le club et inscris-toi.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="EXPLORIUM | Explore, Learn, Create">
+<meta property="og:description" content="EXPLORIUM, club de sciences, de programmation, de robotique, de data science et de cybersécurité. Découvre le club et inscris-toi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%23ffe047%27/%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%2315204a%27%20stroke-width%3D%274%27%3E%3Cellipse%20cx%3D%2732%27%20cy%3D%2732%27%20rx%3D%2724%27%20ry%3D%279%27/%3E%3Cellipse%20cx%3D%2732%27%20cy%3D%2732%27%20rx%3D%2724%27%20ry%3D%279%27%20transform%3D%27rotate%2860%2032%2032%29%27/%3E%3Cellipse%20cx%3D%2732%27%20cy%3D%2732%27%20rx%3D%2724%27%20ry%3D%279%27%20transform%3D%27rotate%28120%2032%2032%29%27/%3E%3C/g%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%275%27%20fill%3D%27%23d93a3f%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>EXPLORIUM | Explore, Learn, Create</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Caveat:wght@500;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Concept : le cahier Seyès d'un club de sciences. Jour = papier quadrillé, stylo bleu, correcteur rouge, surligneur jaune.
+   Nuit = ardoise à la craie. Cartes collées au scotch, tampons encreurs, doodles de labo légèrement tremblés. */
+:root {
+  --paper: #f6f8fd;
+  --grid: rgba(70, 110, 200, .13);
+  --grid-strong: rgba(70, 110, 200, .30);
+  --margin: #e5484d;
+  --ink: #15204a;
+  --ink-soft: #4b5880;
+  --card: #ffffff;
+  --field: #eaf0ff;
+  --blue-pen: #2447d6;
+  --red-pen: #d93a3f;
+  --hl: rgba(255, 224, 70, .85);
+  --hl-solid: #ffe047;
+  --on-hl: #15204a;
+  --tape: rgba(255, 214, 90, .78);
+  --ok: #0b7a5f;
+  --err: #c2262e;
+  --font-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --font-hand: "Caveat", "Segoe Print", "Comic Sans MS", cursive;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14222b; --grid: rgba(205, 228, 236, .07); --grid-strong: rgba(205, 228, 236, .15);
+    --margin: #ff7d74; --ink: #eaf2f4; --ink-soft: #a6b8c1; --card: #1b2d38; --field: #112028;
+    --blue-pen: #9bbcff; --red-pen: #ff8c82; --hl: rgba(240, 205, 70, .42); --tape: rgba(235, 200, 80, .42);
+    --ok: #62d9bb; --err: #ff9088; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14222b; --grid: rgba(205, 228, 236, .07); --grid-strong: rgba(205, 228, 236, .15);
+  --margin: #ff7d74; --ink: #eaf2f4; --ink-soft: #a6b8c1; --card: #1b2d38; --field: #112028;
+  --blue-pen: #9bbcff; --red-pen: #ff8c82; --hl: rgba(240, 205, 70, .42); --tape: rgba(235, 200, 80, .42);
+  --ok: #62d9bb; --err: #ff9088; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+body {
+  margin: 0; color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6;
+  background-color: var(--paper);
+  background-image: linear-gradient(var(--grid-strong) 1px, transparent 1px), linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 100% 32px, 100% 8px, 32px 100%;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--paper); }
+h1, h2, h3 { font-family: var(--font-display); font-stretch: 80%; letter-spacing: -.01em; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--blue-pen); }
+:focus-visible { outline: 3px solid var(--blue-pen); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1140px; margin: 0 auto; position: relative; padding-left: 22px; }
+.wrap::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: var(--margin); opacity: .75; }
+.hand { font-family: var(--font-hand); font-weight: 700; }
+.mono { font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.hl { background: linear-gradient(transparent 52%, var(--hl) 52%, var(--hl) 94%, transparent 94%); padding: 0 .08em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.ic { width: 1em; height: 1em; stroke: currentColor; fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* cartes dessinées à la main : le cadre tremble, pas le texte */
+.sk { position: relative; isolation: isolate; min-width: 0; }
+.sk::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--card); border: 2px solid var(--ink); border-radius: 10px; box-shadow: 5px 5px 0 var(--ink); filter: url(#wobble); pointer-events: none; }
+.tape::after { content: ""; position: absolute; top: -13px; left: 50%; width: 92px; height: 26px; margin-left: -46px; background: var(--tape); rotate: -3deg; box-shadow: 0 1px 0 rgba(0,0,0,.08); z-index: 2; clip-path: polygon(0 8%, 4% 0, 8% 10%, 12% 0, 100% 0, 96% 50%, 100% 100%, 8% 100%, 4% 90%, 0 100%, 3% 50%); }
+
+/* boutons autocollants */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font: 700 17px/1 var(--font-body); padding: 15px 22px; border: 2px solid var(--ink); border-radius: 10px; background: var(--hl-solid); color: var(--on-hl); box-shadow: 4px 4px 0 var(--ink); cursor: pointer; text-decoration: none; transition: transform .12s, box-shadow .12s; }
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+.btn.plain { background: var(--card); color: var(--ink); }
+.btn[disabled] { opacity: .6; cursor: wait; }
+
+/* en-tête */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: var(--paper); border-bottom: 2px solid var(--ink);
+  margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.top .in { max-width: 1140px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 10px 20px; padding-block: 10px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: var(--font-display); font-stretch: 80%; font-weight: 800; font-size: 26px; letter-spacing: .02em; }
+.brand .ic { width: 34px; height: 34px; }
+.nav { display: flex; align-items: center; gap: 6px; min-width: 0; overflow-x: auto; padding: 6px 4px 8px; }
+.nav a { color: var(--ink); text-decoration: none; padding: 7px 12px; font-weight: 600; font-size: 15px; white-space: nowrap; border-radius: 8px; }
+.nav a:hover { background: var(--hl); }
+.nav a.btn { padding: 10px 16px; font-size: 15px; box-shadow: 3px 3px 0 var(--ink); rotate: -2deg; margin-left: 6px; }
+.nav a.btn:hover { background: var(--hl-solid); }
+
+/* accueil */
+.hero { padding-block: clamp(44px, 7vw, 92px) clamp(48px, 7vw, 88px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px 56px; align-items: center; }
+.kicker { font-size: 28px; color: var(--red-pen); display: block; rotate: -1.5deg; margin-bottom: 4px; }
+.hero .wrap > div { min-width: 0; }
+.hero h1 { font-size: clamp(48px, 7.2vw, 104px); font-weight: 800; line-height: .92; overflow-wrap: anywhere; }
+.hero h1 span { display: block; }
+.squig { display: block; width: min(420px, 90%); height: 16px; margin-top: 6px; overflow: visible; }
+.squig path { stroke: var(--red-pen); stroke-width: 5; fill: none; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; animation: draw .9s .35s ease-out backwards; }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.lead { max-width: 54ch; margin-top: 26px; font-size: 20px; color: var(--ink-soft); }
+.cta { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; margin-top: 30px; }
+.note { font-size: 26px; color: var(--blue-pen); rotate: -3deg; }
+.plate { padding: 26px 22px 20px; rotate: 1.6deg; }
+.plate .cap { display: block; text-align: center; font-size: 24px; color: var(--red-pen); margin-bottom: 8px; }
+.plate .cells { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 4px; }
+.plate .cell { display: grid; justify-items: center; gap: 2px; text-align: center; padding: 8px 2px; font-family: var(--font-hand); font-weight: 700; font-size: 21px; line-height: 1.05; color: var(--ink-soft); }
+.plate .cell .ic { width: 62px; height: 62px; color: var(--ink); filter: url(#scribble); }
+.plate .q { font-family: var(--font-display); font-stretch: 75%; font-weight: 800; font-size: 78px; line-height: 1; color: var(--red-pen); rotate: 8deg; }
+
+/* chapitres */
+section { padding-block: clamp(48px, 7vw, 88px); }
+.chap { font-size: 28px; color: var(--red-pen); display: block; rotate: -1deg; }
+.title { font-size: clamp(40px, 6.4vw, 76px); font-weight: 800; line-height: .98; max-width: 16ch; padding-bottom: 14px; position: relative; display: inline-block; }
+.title::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 7px; border-top: 2px solid var(--red-pen); border-bottom: 2px solid var(--red-pen); opacity: .85; }
+.intro { max-width: 60ch; margin-top: 22px; color: var(--ink-soft); font-size: 19px; }
+.two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px 64px; align-items: start; }
+.prose { display: grid; gap: 16px; font-size: 18px; }
+.prose p:first-child { font-size: 24px; line-height: 1.4; font-weight: 500; }
+.sub { font-size: clamp(30px, 4vw, 44px); font-weight: 800; margin: 76px 0 28px; line-height: 1; }
+.sub .hand { font-size: .7em; color: var(--red-pen); font-weight: 700; margin-right: 8px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; }
+.card { padding: 28px 24px 24px; }
+.cards .card:nth-child(1) { rotate: -1.2deg; } .cards .card:nth-child(2) { rotate: .9deg; }
+.cards .card:nth-child(3) { rotate: -.6deg; } .cards .card:nth-child(4) { rotate: 1.2deg; }
+.card .glyph { font-family: var(--font-hand); font-size: 44px; line-height: 1; color: var(--blue-pen); display: block; margin-bottom: 6px; }
+.card h3 { font-size: 28px; font-weight: 800; line-height: 1.02; }
+.card p { margin-top: 10px; color: var(--ink-soft); }
+
+.stamps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 34px 28px; }
+.stamps > div { display: grid; gap: 14px; justify-items: start; min-width: 0; }
+.stamp { display: inline-block; border: 3px double var(--blue-pen); color: var(--blue-pen); border-radius: 8px; padding: 6px 16px 4px; font: 800 30px/1.1 var(--font-display); font-stretch: 80%; text-transform: uppercase; letter-spacing: .03em; filter: url(#scribble); }
+.stamps > div:nth-child(odd) .stamp { rotate: -3deg; } .stamps > div:nth-child(even) .stamp { rotate: 2.4deg; }
+.stamps p { color: var(--ink-soft); }
+
+.acts { display: grid; gap: 0; }
+.acts > div { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 4px 28px; padding: 18px 0; align-items: baseline; border-bottom: 2px dashed var(--grid-strong); }
+.acts .hand { font-size: 38px; line-height: 1; color: var(--red-pen); }
+.acts h3 { font-size: 26px; font-weight: 800; line-height: 1.05; }
+.acts p { color: var(--ink-soft); margin-top: 4px; }
+
+.sheet-rules { padding: clamp(24px, 4vw, 44px); }
+.rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 48px; }
+.rules .mono { color: var(--red-pen); display: block; margin-bottom: 4px; }
+.rules h3 { font-size: 26px; font-weight: 800; line-height: 1.05; }
+.rules p { margin-top: 6px; color: var(--ink-soft); }
+.signed { display: flex; align-items: center; gap: 14px; margin-top: 34px; font-size: 30px; color: var(--blue-pen); flex-wrap: wrap; }
+.signed svg { width: 150px; height: 40px; overflow: visible; }
+.signed path { stroke: var(--blue-pen); stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+/* matières */
+.subjects { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 36px 30px; margin-top: 44px; }
+.subj { padding: 28px 24px 24px; display: flex; flex-direction: column; gap: 12px; }
+.subjects .subj:nth-child(odd) { rotate: -.7deg; } .subjects .subj:nth-child(even) { rotate: .8deg; }
+.subj .ic { width: 70px; height: 70px; color: var(--ink); filter: url(#scribble); }
+.subj h3 { font-size: 34px; font-weight: 800; line-height: 1; }
+.subj p { color: var(--ink-soft); flex: 1; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.tags span { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .04em; padding: 3px 9px; border: 1.5px solid var(--ink-soft); border-radius: 5px; color: var(--ink-soft); }
+.pick { align-self: flex-start; font: 700 15px/1 var(--font-body); padding: 11px 15px; border: 2px solid var(--ink); border-radius: 9px; background: var(--card); color: var(--ink); box-shadow: 3px 3px 0 var(--ink); cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.pick:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+.pick[aria-pressed="true"] { background: var(--hl-solid); color: var(--on-hl); transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+.subj.other { background: transparent; text-align: left; justify-content: center; }
+.subj.other::before { background: transparent; border-style: dashed; box-shadow: none; }
+.subj.other .q { font: 800 90px/.8 var(--font-display); font-stretch: 75%; color: var(--red-pen); }
+.subj.other p { flex: none; font-size: 19px; }
+
+/* inscription */
+.reg { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 44px 56px; align-items: start; }
+.reg aside .intro { margin-top: 24px; }
+.steps { list-style: none; padding: 0; margin: 30px 0 0; display: grid; gap: 16px; }
+.steps li { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 12px; align-items: start; color: var(--ink-soft); }
+.steps b { width: 38px; height: 38px; display: grid; place-items: center; border: 2px solid var(--blue-pen); border-radius: 50%; color: var(--blue-pen); font: 700 24px/1 var(--font-hand); filter: url(#scribble); }
+form, .done { padding: clamp(24px, 4vw, 42px); }
+fieldset { border: 0; padding: 0; margin: 0 0 30px; min-width: 0; }
+legend { padding: 0; margin-bottom: 14px; font-size: 30px; color: var(--red-pen); font-family: var(--font-hand); font-weight: 700; line-height: 1; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.full { grid-column: 1 / -1; }
+label.f { display: grid; gap: 6px; font-weight: 700; font-size: 15px; min-width: 0; }
+label.f small { font-weight: 400; color: var(--ink-soft); font-size: 14px; }
+input[type=text], input[type=number], input[type=email], input[type=tel], textarea { width: 100%; font: 500 17px/1.4 var(--font-body); color: var(--ink); background: var(--field); border: 0; border-bottom: 2.5px solid var(--ink); border-radius: 5px 5px 0 0; padding: 12px 12px; }
+textarea { resize: vertical; min-height: 104px; }
+input[aria-invalid="true"], textarea[aria-invalid="true"] { border-bottom-color: var(--err); }
+.err { color: var(--err); font-size: 14px; font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: 12px; }
+.chips label { position: relative; cursor: pointer; }
+.chips input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.chips span { display: inline-flex; align-items: center; gap: 9px; padding: 10px 14px; border: 2px solid var(--ink); border-radius: 9px; background: var(--card); box-shadow: 3px 3px 0 var(--ink); font-weight: 700; font-size: 15px; transition: transform .12s, box-shadow .12s; }
+.chips span .ic { width: 24px; height: 24px; }
+.chips input:checked + span { background: var(--hl-solid); color: var(--on-hl); transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+.chips input:focus-visible + span { outline: 3px solid var(--blue-pen); outline-offset: 3px; }
+.count { text-align: right; color: var(--ink-soft); font: 400 13px var(--font-mono); margin-top: 4px; }
+.consent { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; align-items: start; margin-bottom: 18px; font-size: 16px; }
+.consent input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--blue-pen); }
+.privacy { color: var(--ink-soft); font-size: 14px; margin-top: 16px; }
+.done .stampbig { display: inline-block; font: 800 64px/1 var(--font-display); font-stretch: 75%; text-transform: uppercase; color: var(--red-pen); border: 5px double var(--red-pen); border-radius: 10px; padding: 8px 22px 4px; rotate: -7deg; filter: url(#scribble); letter-spacing: .03em; }
+.done h3 { font-size: 36px; font-weight: 800; margin-top: 26px; line-height: 1; }
+.done p { margin-top: 10px; color: var(--ink-soft); }
+.sheet { margin: 22px 0 0; padding: 16px 18px; border: 2px dashed var(--ink-soft); border-radius: 8px; background: var(--field); font: 400 14px/1.75 var(--font-mono); white-space: pre-wrap; word-break: break-word; color: var(--ink); }
+.row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 22px; }
+.status { margin-top: 12px; font-size: 14px; color: var(--ink-soft); min-height: 1.4em; }
+
+/* registre (responsables) */
+.stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 20px; }
+.stats span { padding: 5px 12px; border: 2px solid var(--ink); border-radius: 99px; background: var(--card); font-weight: 600; font-size: 14px; }
+.tablebox { overflow-x: auto; padding: 4px; }
+table { border-collapse: collapse; width: 100%; min-width: 780px; font-size: 15px; }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 2px dashed var(--grid-strong); vertical-align: top; }
+th { font: 500 11.5px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--red-pen); }
+td button { font: 600 13px/1 var(--font-body); padding: 7px 10px; border-radius: 7px; border: 2px solid var(--ink-soft); background: transparent; color: var(--ink-soft); cursor: pointer; }
+td button.sure { color: var(--err); border-color: var(--err); }
+
+footer { padding-block: 40px 56px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px; }
+footer .hand { font-size: 28px; color: var(--blue-pen); }
+footer span { color: var(--ink-soft); font-size: 14px; }
+
+/* ===== effets et animations ===== */
+.hero { position: relative; overflow: clip; }
+.hero .wrap { z-index: 1; }
+.floaters { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.floaters span { position: absolute; left: var(--x); top: var(--y); font: 700 var(--s, 40px)/1 var(--font-hand); color: var(--blue-pen); opacity: .2; rotate: var(--r, 0deg); animation: drift var(--t, 9s) ease-in-out var(--dl, 0s) infinite alternate; }
+@keyframes drift { from { translate: 0 0; rotate: var(--r, 0deg); } to { translate: var(--dx, 16px) var(--dy, -24px); rotate: calc(var(--r, 0deg) + 14deg); } }
+
+.kicker { animation: dropIn .6s cubic-bezier(.2, 1.25, .3, 1) backwards; }
+.hero h1 > span { animation: dropIn .85s cubic-bezier(.2, 1.25, .3, 1) backwards; }
+.hero h1 > span:nth-child(1) { animation-delay: .1s; }
+.hero h1 > span:nth-child(2) { animation-delay: .25s; }
+.hero h1 > span:nth-child(3) { animation-delay: .4s; }
+@keyframes dropIn { from { opacity: 0; translate: 0 -46px; rotate: -5deg; } }
+.lead, .cta { animation: fadeUp .8s .8s ease-out backwards; }
+@keyframes fadeUp { from { opacity: 0; translate: 0 18px; } }
+
+.hl { background-repeat: no-repeat; background-size: 100% 100%; transition: background-size .9s .35s cubic-bezier(.6, 0, .2, 1); }
+.hero .hl { animation: sweep .8s 1.05s cubic-bezier(.6, 0, .2, 1) backwards; }
+@keyframes sweep { from { background-size: 0% 100%; } }
+.rv-on .rv:not(.in) .hl { background-size: 0% 100%; }
+
+.plate { animation: bob 6s ease-in-out infinite, plateIn .9s .5s cubic-bezier(.2, 1.3, .3, 1) backwards; transition: transform .25s ease-out; }
+@keyframes bob { 50% { translate: 0 -9px; } }
+@keyframes plateIn { from { opacity: 0; scale: .7; } }
+.plate .cell { animation: pop .55s cubic-bezier(.3, 1.7, .5, 1) backwards; }
+.plate .cell:nth-child(1) { animation-delay: .9s; } .plate .cell:nth-child(2) { animation-delay: 1s; }
+.plate .cell:nth-child(3) { animation-delay: 1.1s; } .plate .cell:nth-child(4) { animation-delay: 1.2s; }
+.plate .cell:nth-child(5) { animation-delay: 1.3s; } .plate .cell:nth-child(6) { animation-delay: 1.4s; }
+@keyframes pop { from { scale: 0; rotate: -25deg; } }
+.plate .cell:hover .ic, .subj:hover > .ic { animation: wig .6s ease-in-out; }
+@keyframes wig { 20% { rotate: -12deg; } 50% { rotate: 10deg; } 80% { rotate: -5deg; } }
+.plate .q { animation: qwob 2.4s ease-in-out infinite; }
+@keyframes qwob { 0%, 100% { rotate: 8deg; scale: 1; } 50% { rotate: -4deg; scale: 1.1; } }
+
+.band { margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px))); padding-block: 16px; overflow: clip; position: relative; z-index: 2; }
+html, body { overflow-x: clip; }
+.marquee { margin: 0 -8vw; background: var(--hl-solid); color: var(--on-hl); border-block: 2px solid var(--ink); rotate: -1.2deg; overflow: hidden; white-space: nowrap; padding: 11px 0 9px; position: relative; z-index: 2; font: 800 28px/1 var(--font-display); font-stretch: 80%; letter-spacing: .06em; text-transform: uppercase; box-shadow: 0 5px 0 var(--ink); }
+.marquee .track { display: inline-flex; animation: scrollx 30s linear infinite; }
+.marquee:hover .track { animation-play-state: paused; }
+@keyframes scrollx { to { transform: translateX(-50%); } }
+
+.rv-on .rv { opacity: .22; transform: translateY(38px); }
+.rv-on .rv.in { opacity: 1; transform: none; transition: opacity .7s ease var(--d, 0s), transform .85s cubic-bezier(.2, .9, .25, 1.12) var(--d, 0s), rotate .3s ease, translate .3s ease; }
+.card, .subj { transition: rotate .3s ease, translate .3s ease; }
+.cards .card:hover, .subjects .subj:hover { rotate: 0deg; translate: 0 -6px; }
+.tape:hover::after { animation: flap .5s ease-in-out; }
+@keyframes flap { 30% { rotate: -9deg; } 60% { rotate: 2deg; } }
+.rv-on .title::after { transform: scaleX(0); transform-origin: left; }
+.rv-on .title.in::after { transform: scaleX(1); transition: transform .9s .3s cubic-bezier(.6, 0, .2, 1); }
+.rv-on .stamps > div.in .stamp { animation: stampIn .55s .15s cubic-bezier(.3, 1.7, .5, 1) backwards; }
+@keyframes stampIn { from { scale: 2.6; opacity: 0; } 60% { opacity: 1; } }
+.acts > div { transition: background .25s, padding-left .25s; }
+.acts > div:hover { padding-left: 14px; background: linear-gradient(90deg, var(--hl), transparent 65%); }
+
+.btn { position: relative; overflow: hidden; isolation: isolate; }
+.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .6) 50%, transparent 70%); translate: -130% 0; pointer-events: none; }
+.btn:hover::before { translate: 130% 0; transition: translate .7s ease; }
+.btn:hover { animation: wob .45s ease-in-out; }
+@keyframes wob { 25% { rotate: -2.5deg; } 75% { rotate: 2deg; } }
+.chips input:checked + span, .pick[aria-pressed="true"] { animation: pop2 .4s cubic-bezier(.3, 1.8, .5, 1); }
+@keyframes pop2 { 0% { scale: .82; } 60% { scale: 1.12; } }
+input[type=text], input[type=number], input[type=email], input[type=tel], textarea { transition: background .2s, border-color .2s, box-shadow .2s; }
+input:focus, textarea:focus { background: var(--card); border-bottom-color: var(--blue-pen); box-shadow: 0 5px 0 -1px var(--hl-solid); outline: none; }
+.done:not([hidden]) .stampbig { animation: slam .65s cubic-bezier(.2, 1.3, .4, 1) backwards; }
+@keyframes slam { from { scale: 3.2; opacity: 0; rotate: -28deg; } 55% { opacity: 1; } }
+.done:not([hidden]) { animation: shake .4s .3s; }
+@keyframes shake { 20% { translate: -5px 2px; } 40% { translate: 5px -2px; } 60% { translate: -3px 1px; } 80% { translate: 2px 0; } }
+.prog { position: absolute; left: 0; bottom: -2px; height: 4px; width: 100%; background: var(--red-pen); transform-origin: left; transform: scaleX(var(--p, 0)); pointer-events: none; }
+@media (max-width: 880px) { .floaters .hm { display: none; } .marquee { font-size: 22px; } }
+
+@media (max-width: 880px) {
+  .hero .wrap, .two, .reg { grid-template-columns: minmax(0, 1fr); }
+  .plate { max-width: 460px; }
+  .acts > div { grid-template-columns: minmax(0, 1fr); }
+  .rules { grid-template-columns: minmax(0, 1fr); }
+}
+/* ===== bascule jour/nuit, question, barre mobile ===== */
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body { -webkit-tap-highlight-color: transparent; }
+button, .btn, .pick, .chips label { touch-action: manipulation; }
+.theme { width: 46px; height: 46px; display: grid; place-items: center; padding: 0; border: 2px solid var(--ink); border-radius: 10px; background: var(--card); color: var(--ink); box-shadow: 3px 3px 0 var(--ink); cursor: pointer; transition: transform .12s, box-shadow .12s; flex: none; }
+.theme:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+.theme .ic { width: 26px; height: 26px; stroke-width: 3; }
+.theme .sun { display: none; }
+.theme[data-dark="true"] .sun { display: block; }
+.theme[data-dark="true"] .moon { display: none; }
+.theme:hover .ic { animation: wig .6s ease-in-out; }
+.qcard { padding: clamp(24px, 4vw, 44px); display: grid; gap: 26px; }
+.qbody { display: grid; gap: 14px; min-width: 0; }
+.qtext { font: 800 clamp(28px, 4.6vw, 52px)/1.05 var(--font-display); font-stretch: 80%; letter-spacing: -.01em; text-wrap: balance; max-width: 24ch; }
+.hint { border: 2px dashed var(--ink-soft); border-radius: 10px; padding: 14px 16px; background: var(--field); max-width: 64ch; }
+.hint b { font-family: var(--font-hand); font-size: 26px; color: var(--red-pen); margin-right: 6px; }
+.qbody.swap { animation: swapq .55s ease-in-out; }
+@keyframes swapq { 45% { opacity: 0; translate: 0 -16px; rotate: -1.5deg; } 55% { opacity: 0; translate: 0 16px; rotate: 1.5deg; } }
+.dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 35; display: none; visibility: hidden; translate: 0 130%; transition: translate .3s ease, visibility 0s .3s;
+  padding: 24px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background: linear-gradient(transparent, var(--paper) 45%); pointer-events: none; }
+.dock .btn { width: 100%; pointer-events: auto; }
+.dock.show { visibility: visible; translate: 0 0; transition: translate .3s ease; }
+@media (hover: none) {
+  .btn:hover { animation: none; transform: none; box-shadow: 4px 4px 0 var(--ink); }
+  .btn:hover::before { translate: -130% 0; transition: none; }
+  .acts > div:hover { padding-left: 0; background: none; }
+  .tape:hover::after { animation: none; }
+}
+@media (max-width: 640px), (pointer: coarse) {
+  .sk::before { filter: none; border-radius: 14px; }
+}
+@media (max-width: 640px) {
+  html { scroll-padding-top: 76px; }
+  .dock { display: block; }
+  .top .in { flex-wrap: nowrap; padding-block: 8px; gap: 8px; }
+  .brand { font-size: 23px; gap: 8px; }
+  .brand .ic { width: 30px; height: 30px; }
+  .nav { overflow: visible; padding: 0; gap: 8px; flex: none; }
+  .nav a:not(.btn) { display: none; }
+  .nav a.btn { padding: 12px 14px; margin-left: 0; rotate: 0deg; }
+  .hero { padding-block: 30px 44px; }
+  .hero h1 { font-size: clamp(46px, 14.5vw, 76px); }
+  .kicker { font-size: 23px; }
+  .lead { font-size: 18px; margin-top: 20px; }
+  .cta { margin-top: 24px; }
+  .note { display: none; }
+  .floaters span { opacity: .14; }
+  .plate { rotate: 1deg; padding: 22px 14px 16px; }
+  .marquee { font-size: 20px; padding: 9px 0 7px; margin: 0 -12vw; }
+  section { padding-block: 44px; }
+  .chap { font-size: 24px; }
+  .title { font-size: clamp(36px, 11vw, 52px); }
+  .intro { font-size: 17px; }
+  .sub { margin: 48px 0 20px; }
+  .prose p:first-child { font-size: 21px; }
+  .cards, .subjects { gap: 28px; }
+  .card, .subj { padding: 24px 20px 20px; }
+  .acts .hand { font-size: 32px; }
+  .stamp { font-size: 24px; }
+  .btn { min-height: 50px; }
+  .pick { min-height: 46px; padding: 13px 16px; }
+  .chips span { min-height: 46px; padding: 11px 14px; }
+  input[type=text], input[type=number], input[type=email], input[type=tel] { min-height: 50px; }
+  form, .done { padding: 24px 18px; }
+  .qcard { padding: 24px 18px; }
+  .rv-on .rv { transform: translateY(22px); }
+  .marquee .track { will-change: transform; }
+  footer { padding-block: 32px 112px; }
+}
+/* ===== boîte à domaines (physique) + finitions ===== */
+.plate.lab-on { animation: plateIn .9s .5s cubic-bezier(.2, 1.3, .3, 1) backwards; rotate: 0deg; transition: none; padding-bottom: 18px; }
+.lab { position: relative; height: clamp(270px, 26vw, 300px); margin-top: 6px; border-bottom: 3px solid var(--ink); overflow: hidden; touch-action: pan-y; }
+.lab .stk { position: absolute; left: 0; top: 0; width: calc(var(--r) * 2); height: calc(var(--r) * 2); margin: 0; padding: 0; border: 2.5px solid var(--ink); border-radius: 50%; background: var(--card); color: var(--ink); box-shadow: 3px 3px 0 var(--ink); display: grid; place-items: center; align-content: center; gap: 0; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; will-change: transform; font: 700 calc(var(--r) * .31)/1 var(--font-hand); text-align: center; }
+.lab .stk .ic { width: calc(var(--r) * .8); height: calc(var(--r) * .8); }
+.lab .stk span { margin-top: -2px; }
+.lab .stk[aria-pressed="true"] { background: var(--hl-solid); color: var(--on-hl); }
+.lab .stk.ask { background: transparent; border-style: dashed; box-shadow: none; color: var(--red-pen); }
+.lab .stk.ask b { font: 800 calc(var(--r) * .9)/.9 var(--font-display); font-stretch: 75%; }
+.lab .stk.grab { cursor: grabbing; z-index: 3; box-shadow: 7px 8px 0 var(--ink); }
+.lab .tip { position: absolute; left: 4px; top: 2px; font: 700 21px/1.1 var(--font-hand); color: var(--blue-pen); pointer-events: none; rotate: -2deg; transition: opacity .4s; }
+.lab.touched .tip { opacity: 0; }
+.lab .shake { position: absolute; right: 2px; top: 2px; z-index: 4; font: 700 14px/1 var(--font-body); padding: 10px 12px; border: 2px solid var(--ink); border-radius: 8px; background: var(--card); color: var(--ink); box-shadow: 2px 2px 0 var(--ink); cursor: pointer; }
+.lab .shake:active { transform: translate(2px, 2px); box-shadow: none; }
+::selection { background: var(--hl-solid); color: var(--on-hl); }
+html { scrollbar-color: var(--ink-soft) var(--paper); }
+@media (pointer: fine) {
+  body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M3 29l2-8 16-16a3 3 0 0 1 4 0l2 2a3 3 0 0 1 0 4L11 27z' fill='%23ffe047' stroke='%2315204a' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M3 29l2-8 6 6z' fill='%23ffffff' stroke='%2315204a' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M3 29l1-3.5 2.5 2.5z' fill='%2315204a'/%3E%3C/svg%3E") 3 29, auto; }
+}
+@media (max-width: 520px) {
+  .wrap { padding-left: 18px; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .cta .btn { flex: 1 1 100%; }
+  .stamp { font-size: 26px; }
+  .done .stampbig { font-size: 48px; }
+}
+</style>
+</head>
+<body>
+
+
+<svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="wobble" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="4"/></filter>
+    <filter id="scribble" x="-8%" y="-8%" width="116%" height="116%"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="9" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4"/></filter>
+    <symbol id="i-orbit" viewBox="0 0 64 64"><ellipse cx="32" cy="32" rx="27" ry="10"/><ellipse cx="32" cy="32" rx="27" ry="10" transform="rotate(60 32 32)"/><ellipse cx="32" cy="32" rx="27" ry="10" transform="rotate(120 32 32)"/><circle cx="32" cy="32" r="4" style="fill:var(--red-pen);stroke:none"/></symbol>
+    <symbol id="i-mpc" viewBox="0 0 64 64"><ellipse cx="32" cy="32" rx="27" ry="10"/><ellipse cx="32" cy="32" rx="27" ry="10" transform="rotate(60 32 32)"/><ellipse cx="32" cy="32" rx="27" ry="10" transform="rotate(120 32 32)"/><circle cx="32" cy="32" r="4" style="fill:var(--red-pen);stroke:none"/></symbol>
+    <symbol id="i-pgr" viewBox="0 0 64 64"><path d="M22 18 8 32l14 14M42 18l14 14-14 14M37 12 27 52"/></symbol>
+    <symbol id="i-rob" viewBox="0 0 64 64"><rect x="12" y="22" width="40" height="30" rx="7"/><path d="M32 22V11M4 34v8M60 34v8M23 44h18"/><circle cx="32" cy="8" r="3"/><circle cx="24" cy="35" r="3.5" style="fill:var(--red-pen);stroke:none"/><circle cx="40" cy="35" r="3.5" style="fill:var(--red-pen);stroke:none"/></symbol>
+    <symbol id="i-dia" viewBox="0 0 64 64"><path d="M8 8v48h50"/><rect x="16" y="38" width="9" height="18"/><rect x="29" y="27" width="9" height="29"/><rect x="42" y="16" width="9" height="40"/><path d="M14 30 28 20l12 4 16-14" style="stroke:var(--red-pen)"/></symbol>
+    <symbol id="i-cbr" viewBox="0 0 64 64"><rect x="13" y="28" width="38" height="28" rx="5"/><path d="M21 28v-8a11 11 0 0 1 22 0v8M32 38v8"/><circle cx="32" cy="38" r="3.5" style="fill:var(--red-pen);stroke:none"/></symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="in">
+    <a class="brand" href="#accueil" aria-label="Explorium, accueil"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-orbit"/></svg>EXPLORIUM</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#club">Le club</a>
+      <a href="#matieres">Matières</a>
+      <a href="#inscrits" id="navAdmin" hidden>Registre</a>
+      <a href="#inscription" class="btn">Rejoindre</a>
+      <button class="theme" id="theme" type="button" aria-label="Basculer entre le mode jour et le mode nuit" data-dark="false">
+        <svg class="ic moon" viewBox="0 0 64 64" aria-hidden="true"><path d="M46 40A21 21 0 1 1 24 12a17 17 0 0 0 22 28z"/></svg>
+        <svg class="ic sun" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="10"/><path d="M32 8v8M32 48v8M8 32h8M48 32h8M15 15l6 6M43 43l6 6M15 49l6-6M43 21l6-6"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="accueil">
+  <div class="hero">
+    <div class="floaters" aria-hidden="true">
+      <span style="--x:46%;--y:6%;--s:46px;--r:-8deg;--t:8s">∑</span>
+      <span style="--x:90%;--y:10%;--s:40px;--r:10deg;--t:10s;--dl:-3s">π</span>
+      <span style="--x:38%;--y:91%;--s:34px;--r:-6deg;--t:11s;--dl:-5s" class="hm">E = mc²</span>
+      <span style="--x:58%;--y:82%;--s:38px;--r:6deg;--t:9s;--dl:-2s">&lt;/&gt;</span>
+      <span style="--x:68%;--y:5%;--s:32px;--r:-4deg;--t:12s;--dl:-7s" class="hm">01101</span>
+      <span style="--x:76%;--y:48%;--s:44px;--r:12deg;--t:10s;--dl:-4s" class="hm">∫</span>
+      <span style="--x:18%;--y:4%;--s:34px;--r:5deg;--t:13s;--dl:-1s" class="hm">√2</span>
+      <span style="--x:94%;--y:84%;--s:36px;--r:-10deg;--t:9s;--dl:-6s">∞</span>
+    </div>
+    <div class="wrap">
+      <div>
+        <span class="hand kicker">club de sciences &amp; technologie</span>
+        <h1><span>Explore</span><span><em class="hl" style="font-style:normal">l'inconnu.</em></span><span>Crée le futur.</span></h1>
+        <svg class="squig" viewBox="0 0 400 16" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9C28 1 48 15 74 8S122 1 148 9 198 15 224 8 274 2 300 9s50 6 97-3" pathLength="1"/></svg>
+        <p class="lead">Chez Explorium, la curiosité devient connaissance, les idées deviennent des projets et chaque découverte ouvre la suivante. Maths, code, robots, données et cybersécurité, en pratique et ensemble.</p>
+        <div class="cta">
+          <a class="btn" href="#inscription">Rejoindre le club →</a>
+          <a class="btn plain" href="#matieres">Voir les matières</a>
+          <span class="hand note" aria-hidden="true">↙ c'est par ici</span>
+        </div>
+      </div>
+
+      <div class="plate sk tape" aria-label="Les cinq domaines du club">
+        <span class="hand cap">planche n°1 : nos 5 domaines</span>
+        <div class="cells">
+          <div class="cell"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-mpc"/></svg>maths &amp; PC</div>
+          <div class="cell"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-pgr"/></svg>code</div>
+          <div class="cell"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-rob"/></svg>robots</div>
+          <div class="cell"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-dia"/></svg>data &amp; IA</div>
+          <div class="cell"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-cbr"/></svg>cyber</div>
+          <div class="cell"><span class="q" aria-hidden="true">?</span>et toi ?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band" aria-hidden="true"><div class="marquee"><div class="track">
+    <span>Explore ✦ Learn ✦ Create ✦ Maths ✦ Code ✦ Robots ✦ Data ✦ Cyber ✦ Explore ✦ Learn ✦ Create ✦ Maths ✦ Code ✦ Robots ✦ Data ✦ Cyber ✦&nbsp;</span>
+    <span>Explore ✦ Learn ✦ Create ✦ Maths ✦ Code ✦ Robots ✦ Data ✦ Cyber ✦ Explore ✦ Learn ✦ Create ✦ Maths ✦ Code ✦ Robots ✦ Data ✦ Cyber ✦&nbsp;</span>
+  </div></div></div>
+
+  <section id="club">
+    <div class="wrap">
+      <div class="two">
+        <div>
+          <span class="hand chap">chapitre 1</span>
+          <h2 class="title">Plus qu'un club.</h2>
+        </div>
+        <div class="prose">
+          <p>Explorium est un club scientifique et technologique qui aide ses membres à développer leurs <span class="hl">connaissances</span>, leurs compétences et leur esprit critique.</p>
+          <p>Nous réunissons les mathématiques, la physique-chimie, la programmation, la robotique, la Data Science, l'intelligence artificielle et la cybersécurité.</p>
+          <p>Le but n'est pas seulement de connaître la théorie, mais de la comprendre, de l'expérimenter et de l'appliquer à des situations concrètes.</p>
+        </div>
+      </div>
+
+      <h3 class="sub"><span class="hand">1.</span>Nos ambitions</h3>
+      <div class="cards">
+        <div class="card sk tape"><span class="glyph" aria-hidden="true">◎</span><h3>Développer le savoir</h3><p>Encourager l'apprentissage scientifique et technologique avec une formation progressive et accessible.</p></div>
+        <div class="card sk tape"><span class="glyph" aria-hidden="true">⌘</span><h3>Créer et innover</h3><p>Donner aux membres les moyens de transformer leurs idées en projets, expériences et solutions.</p></div>
+        <div class="card sk tape"><span class="glyph" aria-hidden="true">↗</span><h3>Préparer l'avenir</h3><p>Développer des compétences utiles pour comprendre les technologies et les sciences de demain.</p></div>
+        <div class="card sk tape"><span class="glyph" aria-hidden="true">◇</span><h3>Partager les connaissances</h3><p>Construire une communauté où les membres apprennent les uns des autres.</p></div>
+      </div>
+
+      <h3 class="sub"><span class="hand">2.</span>Nos valeurs</h3>
+      <div class="stamps">
+        <div><span class="stamp">Curiosité</span><p>Ne jamais cesser de poser des questions et de chercher à comprendre.</p></div>
+        <div><span class="stamp">Rigueur</span><p>Travailler avec méthode, précision et esprit critique.</p></div>
+        <div><span class="stamp">Collaboration</span><p>Apprendre ensemble, partager ses idées et respecter les autres.</p></div>
+        <div><span class="stamp">Créativité</span><p>Oser imaginer, expérimenter et explorer de nouvelles possibilités.</p></div>
+      </div>
+
+      <h3 class="sub"><span class="hand">3.</span>Ce qu'on fait ensemble</h3>
+      <div class="acts">
+        <div><span class="hand">apprendre</span><div><h3>Sessions d'apprentissage</h3><p>Étudier des notions scientifiques et technologiques avec des explications, des exercices et des discussions.</p></div></div>
+        <div><span class="hand">expérimenter</span><div><h3>Travaux pratiques et expériences</h3><p>Mettre en application ce qu'on a appris à travers des expériences et des manipulations.</p></div></div>
+        <div><span class="hand">construire</span><div><h3>Projets scientifiques et technologiques</h3><p>Concevoir des programmes, explorer des données, construire des prototypes et mener des projets.</p></div></div>
+        <div><span class="hand">chercher</span><div><h3>Recherche et exploration</h3><p>Découvrir de nouvelles connaissances, analyser des phénomènes et approfondir des sujets.</p></div></div>
+        <div><span class="hand">se mesurer</span><div><h3>Défis et compétitions</h3><p>Participer à des défis intellectuels, des concours et des activités collectives.</p></div></div>
+      </div>
+
+      <h3 class="sub"><span class="hand">4.</span>Règlement intérieur</h3>
+      <div class="sheet-rules sk tape">
+        <div class="rules">
+          <div><span class="mono">Art. 1</span><h3>Respect mutuel</h3><p>Chacun respecte les autres, leurs opinions, leurs idées et leur niveau. Toute discrimination, humiliation ou harcèlement est interdit.</p></div>
+          <div><span class="mono">Art. 2</span><h3>Discipline et ponctualité</h3><p>Les membres respectent les horaires, les consignes et le bon déroulement des activités.</p></div>
+          <div><span class="mono">Art. 3</span><h3>Participation active</h3><p>Chacun est encouragé à participer, poser des questions, proposer des idées et contribuer.</p></div>
+          <div><span class="mono">Art. 4</span><h3>Intégrité intellectuelle</h3><p>On respecte le travail des autres, on cite ses sources et on ne présente jamais le travail d'autrui comme le sien.</p></div>
+          <div><span class="mono">Art. 5</span><h3>Responsabilité numérique</h3><p>Les outils informatiques et les technologies s'utilisent de façon responsable, légale et éthique.</p></div>
+          <div><span class="mono">Art. 6</span><h3>Respect du matériel</h3><p>Les équipements, documents et ressources du club s'utilisent avec soin et se rendent en bon état.</p></div>
+        </div>
+        <div class="signed hand"><span>Lu et approuvé,</span><svg viewBox="0 0 150 40" aria-hidden="true"><path d="M4 30C14 6 22 4 24 16S18 34 30 24s10-18 20-10-4 18 8 14 14-14 26-8 6 14 20 6 14-6 20-2"/></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="matieres">
+    <div class="wrap">
+      <span class="hand chap">chapitre 2</span>
+      <h2 class="title">Cinq domaines. Choisis le tien.</h2>
+      <p class="intro">Chaque domaine est une façon différente de comprendre le monde et de transformer une idée en réalisation. Tu peux en choisir plusieurs.</p>
+      <div class="subjects" id="subjects"></div>
+    </div>
+  </section>
+
+  <section id="question">
+    <div class="wrap">
+      <span class="hand chap">pause curiosité</span>
+      <h2 class="title">Une question pour toi.</h2>
+      <p class="intro">Tout commence par une question. Essaie d'y répondre avant d'ouvrir l'indice.</p>
+      <div class="qcard sk tape" style="margin-top:44px">
+        <div class="qbody" id="qbody">
+          <span class="mono" id="qtag" style="color:var(--red-pen)">Maths &amp; PC</span>
+          <p class="qtext" id="qtext">Pourquoi le ciel est-il bleu le jour et rouge au coucher du soleil ?</p>
+          <div class="hint" id="qhint" hidden></div>
+        </div>
+        <div class="row" style="margin-top:0">
+          <button class="btn" type="button" id="qhintbtn">Voir l'indice</button>
+          <button class="btn plain" type="button" id="qnext">Autre question ↻</button>
+          <button class="btn plain" type="button" id="qadd">Ajouter Maths &amp; PC à ma fiche</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="inscription">
+    <div class="wrap reg">
+      <aside>
+        <span class="hand chap">chapitre 3</span>
+        <h2 class="title">Le futur commence par une question.</h2>
+        <p class="intro">Remplis la fiche de préinscription. Elle prend deux minutes et tu peux choisir plusieurs matières.</p>
+        <ol class="steps">
+          <li><b>1</b><span>Tu remplis la fiche et tu l'envoies.</span></li>
+          <li><b>2</b><span>L'équipe du club la reçoit et te recontacte par e-mail ou par téléphone.</span></li>
+          <li><b>3</b><span>Tu rejoins ton premier atelier.</span></li>
+        </ol>
+      </aside>
+
+      <div>
+        <form id="regForm" class="sk tape" novalidate>
+          <fieldset>
+            <legend>Toi</legend>
+            <div class="grid">
+              <label class="f full" for="nom">Nom et prénom *
+                <input type="text" id="nom" name="nom" autocomplete="name" maxlength="80" required>
+                <span class="err" id="e-nom" role="alert"></span>
+              </label>
+              <label class="f" for="age">Âge *
+                <input type="number" id="age" name="age" inputmode="numeric" min="5" max="99" required>
+                <span class="err" id="e-age" role="alert"></span>
+              </label>
+              <label class="f" for="classe">Classe *
+                <input type="text" id="classe" name="classe" maxlength="40" placeholder="ex. Seconde, 3ᵉ, Terminale" required>
+                <span class="err" id="e-classe" role="alert"></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Matières choisies *</legend>
+            <div class="chips" id="chips" role="group" aria-label="Matières choisies"></div>
+            <span class="err" id="e-mat" role="alert" style="display:block;margin-top:10px"></span>
+          </fieldset>
+
+          <fieldset>
+            <legend>Coordonnées</legend>
+            <div class="grid">
+              <label class="f" for="email">Adresse e-mail *
+                <input type="email" id="email" name="email" autocomplete="email" maxlength="120" required>
+                <span class="err" id="e-email" role="alert"></span>
+              </label>
+              <label class="f" for="tel">Téléphone *
+                <input type="tel" id="tel" name="tel" autocomplete="tel" maxlength="24" placeholder="+indicatif numéro" required>
+                <small>N'oublie pas l'indicatif du pays.</small>
+                <span class="err" id="e-tel" role="alert"></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Un mot pour nous</legend>
+            <label class="f" for="remarque">Remarque (facultatif)
+              <textarea id="remarque" name="remarque" maxlength="500" placeholder="Ce que tu aimerais découvrir, ton niveau, un autre domaine qui t'intéresse."></textarea>
+            </label>
+            <div class="count" id="count">0 / 500</div>
+          </fieldset>
+
+          <label class="consent" for="ok">
+            <input type="checkbox" id="ok" name="ok">
+            <span>Je confirme que ces informations sont exactes et j'accepte qu'elles servent à traiter ma demande d'inscription. *</span>
+          </label>
+          <span class="err" id="e-ok" role="alert" style="display:block;margin:-8px 0 16px"></span>
+
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;min-height:0;padding:0;border:0;opacity:0">
+          <button class="btn" type="submit" id="send">Envoyer ma préinscription →</button>
+          <p class="privacy">Tes informations restent confidentielles et ne sont lues que par les responsables du club.</p>
+        </form>
+
+        <div class="done sk" id="done" hidden>
+          <span class="stampbig" id="stampTxt">Reçu</span>
+          <h3 id="doneTitle">Préinscription enregistrée</h3>
+          <p id="doneText"></p>
+          <pre class="sheet" id="sheet"></pre>
+          <div class="row">
+            <button class="btn" type="button" id="copy">Copier ma fiche</button>
+            <a class="btn plain" id="formLink" href="#" target="_blank" rel="noopener" hidden>Ouvrir le formulaire du club ↗</a>
+            <button class="btn plain" type="button" id="again">Modifier ma fiche</button>
+          </div>
+          <p class="status" id="copyStatus" role="status"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="inscrits" hidden>
+    <div class="wrap">
+      <span class="hand chap">espace responsable</span>
+      <h2 class="title">Registre des fiches</h2>
+      <p class="intro" id="adminNote">Chargement des fiches.</p>
+      <div class="stats" id="stats"></div>
+      <div class="tablebox sk">
+        <table>
+          <thead><tr><th>Reçue le</th><th>Nom</th><th>Âge</th><th>Classe</th><th>Matières</th><th>Contact</th><th></th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="row"><button class="btn plain" type="button" id="csv">Exporter en CSV</button></div>
+      <p class="status" id="csvStatus" role="status"></p>
+    </div>
+  </section>
+</main>
+
+<div class="dock" id="dock"><a class="btn" href="#inscription">Rejoindre le club →</a></div>
+
+<footer>
+  <div class="wrap">
+    <span class="hand">Explore. Learn. Create.</span>
+    <span>© 2026 EXPLORIUM · Built for curious minds.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  // À renseigner si le club a un formulaire externe ou un contact : apparaît après l'envoi.
+  var CONTACT_TEXT = "";   // ex. "WhatsApp du club : +261 ..." ou "contact@..."
+  // Adresse qui reçoit les fiches une fois le site sur GitHub (voir LISEZMOI.md) :
+  // l'URL d'un script Google Apps Script (Google Sheet) ou d'un formulaire Formspree.
+  var ENDPOINT = "";
+  var FORM_URL = "";       // ex. lien d'un Google Form
+
+  var SUBJECTS = [
+    { id: "mpc", name: "Maths & PC", desc: "Explore les lois fondamentales de l'univers à travers les mathématiques, la physique et la chimie.", tags: ["Mathématiques", "Physique", "Chimie"] },
+    { id: "pgr", name: "Programmation", desc: "Apprends à concevoir des programmes, développer des applications et donner vie à tes propres idées numériques.", tags: ["Algorithmique", "Web", "Software"] },
+    { id: "rob", name: "Robotique & IA", desc: "Assemble, programme et fais réagir des machines : capteurs, moteurs et premiers algorithmes d'intelligence artificielle.", tags: ["Capteurs", "Moteurs", "Automatisation"] },
+    { id: "dia", name: "Data science & IA", desc: "Apprends à exploiter les données, découvrir des modèles et comprendre le fonctionnement de l'intelligence artificielle.", tags: ["Data science", "Machine learning", "IA"] },
+    { id: "cbr", name: "Cybersécurité", desc: "Découvre les principes de la sécurité informatique et les méthodes qui protègent les systèmes et les données.", tags: ["Réseaux", "Sécurité", "Cryptographie"] }
+  ];
+  var $ = function (s) { return document.querySelector(s); };
+  var NS = "http://www.w3.org/2000/svg";
+  var selected = {};
+  var syncLab = function () {};
+
+  function icon(id, cls) {
+    var s = document.createElementNS(NS, "svg");
+    s.setAttribute("class", "ic" + (cls ? " " + cls : "")); s.setAttribute("viewBox", "0 0 64 64"); s.setAttribute("aria-hidden", "true");
+    var u = document.createElementNS(NS, "use"); u.setAttribute("href", "#i-" + id); s.appendChild(u);
+    return s;
+  }
+
+  // ---------- matières + puces du formulaire ----------
+  var subjectsEl = $("#subjects"), chipsEl = $("#chips");
+  SUBJECTS.forEach(function (s) {
+    var card = document.createElement("article"); card.className = "subj sk tape";
+    var h = document.createElement("h3"); h.textContent = s.name;
+    var p = document.createElement("p"); p.textContent = s.desc;
+    var tags = document.createElement("div"); tags.className = "tags";
+    s.tags.forEach(function (t) { var sp = document.createElement("span"); sp.textContent = t; tags.appendChild(sp); });
+    var b = document.createElement("button"); b.type = "button"; b.className = "pick"; b.id = "pick-" + s.id;
+    b.setAttribute("aria-pressed", "false"); b.textContent = "Ajouter à mon inscription";
+    b.addEventListener("click", function () { setSubject(s.id, !selected[s.id]); });
+    card.appendChild(icon(s.id)); [h, p, tags, b].forEach(function (n) { card.appendChild(n); });
+    subjectsEl.appendChild(card);
+
+    var lab = document.createElement("label");
+    var inp = document.createElement("input"); inp.type = "checkbox"; inp.id = "m-" + s.id; inp.value = s.id;
+    var span = document.createElement("span"); span.appendChild(icon(s.id)); span.appendChild(document.createTextNode(s.name));
+    lab.appendChild(inp); lab.appendChild(span); chipsEl.appendChild(lab);
+    inp.addEventListener("change", function () { setSubject(s.id, inp.checked); });
+  });
+  (function other() {
+    var card = document.createElement("article"); card.className = "subj other sk";
+    var q = document.createElement("span"); q.className = "q"; q.textContent = "?"; q.setAttribute("aria-hidden", "true");
+    var h = document.createElement("h3"); h.textContent = "Un autre domaine ?";
+    var p = document.createElement("p"); p.textContent = "Dis-nous ce qui t'intéresse dans la remarque de ta fiche d'inscription.";
+    var a = document.createElement("a"); a.className = "pick"; a.href = "#remarque"; a.textContent = "Aller à la remarque"; a.style.textDecoration = "none";
+    [q, h, p, a].forEach(function (n) { card.appendChild(n); }); subjectsEl.appendChild(card);
+  })();
+  function setSubject(id, on) {
+    selected[id] = !!on;
+    $("#m-" + id).checked = !!on;
+    var b = $("#pick-" + id);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.textContent = on ? "Ajouté ✓" : "Ajouter à mon inscription";
+    syncLab();
+    if (on) { $("#e-mat").textContent = ""; sparkleFor(id); }
+  }
+  function chosenNames() { return SUBJECTS.filter(function (s) { return selected[s.id]; }).map(function (s) { return s.name; }); }
+
+  // ---------- compteur ----------
+  var rem = $("#remarque");
+  rem.addEventListener("input", function () { $("#count").textContent = rem.value.length + " / 500"; });
+
+  // ---------- validation ----------
+  function setErr(id, msg, fieldId) {
+    $("#e-" + id).textContent = msg || "";
+    var f = $("#" + (fieldId || id)); if (f) f.setAttribute("aria-invalid", msg ? "true" : "false");
+    return !msg;
+  }
+  function validate() {
+    var ok = true, first = null;
+    function check(good, id, msg, fieldId) {
+      var r = setErr(id, good ? "" : msg, fieldId);
+      if (!r && !first) first = $("#" + (fieldId || id));
+      ok = ok && r;
+    }
+    var nom = $("#nom").value.trim(), age = Number($("#age").value), classe = $("#classe").value.trim();
+    var email = $("#email").value.trim(), tel = $("#tel").value.trim();
+    check(nom.length >= 3 && /\s/.test(nom), "nom", "Écris ton nom et ton prénom.");
+    check(Number.isInteger(age) && age >= 5 && age <= 99, "age", "Indique ton âge en chiffres.");
+    check(classe.length >= 1, "classe", "Indique ta classe.");
+    var many = chosenNames().length > 0;
+    $("#e-mat").textContent = many ? "" : "Choisis au moins une matière.";
+    if (!many && !first) first = $("#m-" + SUBJECTS[0].id);
+    ok = ok && many;
+    check(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email), "email", "Écris une adresse e-mail valide, par exemple nom@exemple.com.");
+    check(/^\+\d[\d\s().-]{6,}$/.test(tel), "tel", "Écris ton numéro avec l'indicatif, par exemple +33 6 12 34 56 78.");
+    check($("#ok").checked, "ok", "Coche cette case pour envoyer ta fiche.");
+    if (first) first.focus();
+    return ok;
+  }
+
+  // ---------- capacités (stockage des fiches) ----------
+  var db = null, uid = null, isAdmin = false;
+  var ready = (async function () {
+    try {
+      if (!window.claude || !window.claude.use) return;
+      var results = await Promise.all([window.claude.use("db"), window.claude.use("user")]);
+      db = results[0];
+      var user = results[1];
+      if (user) {
+        try { uid = await user.id(); } catch (e) {}
+        try { isAdmin = !!(await user.canEdit()); } catch (e) {}
+      }
+    } catch (e) { db = null; }
+    if (db && isAdmin) startAdmin();
+  })();
+
+  function buildDoc() {
+    return {
+      nom: $("#nom").value.trim(), age: Number($("#age").value), classe: $("#classe").value.trim(),
+      matieres: chosenNames(), email: $("#email").value.trim(), tel: $("#tel").value.trim(),
+      remarque: rem.value.trim(), createdAt: new Date().toISOString()
+    };
+  }
+  function sheetText(d) {
+    return ["Préinscription EXPLORIUM", "Nom : " + d.nom, "Âge : " + d.age, "Classe : " + d.classe,
+      "Matières : " + d.matieres.join(", "), "E-mail : " + d.email, "Téléphone : " + d.tel,
+      d.remarque ? "Remarque : " + d.remarque : ""].filter(Boolean).join("\n");
+  }
+  async function sendEndpoint(d) {
+    try {
+      var p = new URLSearchParams();
+      p.set("nom", d.nom); p.set("age", d.age); p.set("classe", d.classe);
+      p.set("matieres", d.matieres.join(", ")); p.set("email", d.email); p.set("tel", d.tel);
+      p.set("remarque", d.remarque); p.set("_subject", "Préinscription Explorium : " + d.nom);
+      var gs = /script\.google\.com/.test(ENDPOINT);
+      var res = await fetch(ENDPOINT, { method: "POST", body: p, mode: gs ? "no-cors" : "cors", headers: gs ? undefined : { Accept: "application/json" } });
+      return gs ? true : res.ok;
+    } catch (e) { return false; }
+  }
+  async function save(d) {
+    await ready;
+    if (db && uid) { try { await db.doc("inscriptions/" + uid).set(d); return true; } catch (e) {} }
+    if (ENDPOINT) return await sendEndpoint(d);
+    return false;
+  }
+
+  var form = $("#regForm"), done = $("#done"), lastSheet = "";
+  form.addEventListener("submit", async function (ev) {
+    ev.preventDefault();
+    if ($("#website").value) return;
+    if (!validate()) return;
+    var btn = $("#send"); btn.disabled = true; btn.textContent = "Envoi en cours…";
+    var d = buildDoc();
+    var saved = await save(d);
+    btn.disabled = false; btn.textContent = "Envoyer ma préinscription →";
+    lastSheet = sheetText(d);
+    $("#sheet").textContent = lastSheet;
+    if (saved) {
+      $("#stampTxt").textContent = "Reçu";
+      $("#doneTitle").textContent = "Préinscription enregistrée";
+      $("#doneText").textContent = "Merci " + d.nom.split(/\s+/)[0] + ". L'équipe d'Explorium a bien reçu ta fiche et te recontacte bientôt. Si tu l'envoies de nouveau, elle remplace la précédente.";
+    } else {
+      $("#stampTxt").textContent = "Presque";
+      $("#doneTitle").textContent = "Dernière étape : envoie ta fiche";
+      $("#doneText").textContent = "Ta fiche est prête, mais elle n'a pas pu être enregistrée depuis cette page. Copie-la et envoie-la au responsable du club." + (CONTACT_TEXT ? " " + CONTACT_TEXT : "");
+    }
+    var link = $("#formLink");
+    if (FORM_URL) { link.href = FORM_URL; link.hidden = false; }
+    form.hidden = true; done.hidden = false;
+    done.scrollIntoView({ block: "start" });
+    if (saved) setTimeout(confetti, 550);
+  });
+  $("#again").addEventListener("click", function () { done.hidden = true; form.hidden = false; $("#nom").focus(); });
+  $("#copy").addEventListener("click", async function () {
+    var st = $("#copyStatus");
+    try { await navigator.clipboard.writeText(lastSheet); st.textContent = "Fiche copiée."; }
+    catch (e) {
+      var r = document.createRange(); r.selectNodeContents($("#sheet"));
+      var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      st.textContent = "Sélectionne le texte et copie-le avec ton clavier.";
+    }
+  });
+
+  // ---------- effets ----------
+  var REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function burst(x, y, n, o) {
+    if (REDUCE) return;
+    o = o || {};
+    var cols = o.cols || ["#ffe047", "#d93a3f", "#2447d6", "#15204a"];
+    for (var i = 0; i < n; i++) {
+      var s = document.createElement("i"), size = 5 + Math.random() * 6, a = Math.random() * 6.283;
+      var dist = 30 + Math.random() * (o.far || 60);
+      var dx = Math.cos(a) * dist, dy = Math.sin(a) * dist + (o.g || 0), rot = (Math.random() - .5) * 720;
+      s.style.cssText = "position:fixed;z-index:70;pointer-events:none;left:" + x + "px;top:" + y + "px;width:" + size + "px;height:" + (o.paper ? size * 1.7 : size) + "px;background:" + cols[i % cols.length] + ";border-radius:" + (o.paper ? "2px" : "50%");
+      document.body.appendChild(s);
+      var an = s.animate([
+        { transform: "translate(-50%,-50%) rotate(0deg) scale(1)", opacity: 1 },
+        { transform: "translate(calc(-50% + " + dx + "px),calc(-50% + " + dy + "px)) rotate(" + rot + "deg) scale(.4)", opacity: 0 }
+      ], { duration: 600 + Math.random() * 600, easing: "cubic-bezier(.15,.8,.3,1)" });
+      an.onfinish = (function (el) { return function () { el.remove(); }; })(s);
+    }
+  }
+  function sparkleFor(id) {
+    var els = [$("#pick-" + id), $("#m-" + id).parentNode];
+    for (var k = 0; k < els.length; k++) {
+      var r = els[k].getBoundingClientRect();
+      if (r.width && r.bottom > 0 && r.top < innerHeight) { burst(r.left + r.width / 2, r.top + r.height / 2, 14, { far: 55 }); return; }
+    }
+  }
+  function confetti() {
+    var r = $("#stampTxt").getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+    burst(x, y, 44, { paper: true, far: 260, g: 160 });
+    setTimeout(function () { burst(x, y, 30, { paper: true, far: 200, g: 200 }); }, 220);
+  }
+
+  // apparition au scroll : les blocs arrivent en glissant et se redressent
+  (function reveal() {
+    if (REDUCE || !("IntersectionObserver" in window)) return;
+    var sel = ".title,.chap,.intro,.prose p,.sub,.card,.stamps > div,.acts > div,.sheet-rules,.subj,.steps li,#regForm";
+    var els = [].slice.call(document.querySelectorAll(sel));
+    els.forEach(function (el) {
+      var idx = [].indexOf.call(el.parentNode.children, el);
+      el.style.setProperty("--d", (Math.min(idx, 5) * 0.09) + "s");
+      el.classList.add("rv");
+    });
+    document.documentElement.classList.add("rv-on");
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  // traits de stylo qui « bougent » comme sur un dessin animé à la main
+  (function boil() {
+    if (REDUCE) return;
+    if (!matchMedia("(pointer: fine)").matches) return;
+    var t = document.querySelector("#scribble feTurbulence");
+    if (!t) return;
+    var s = 0;
+    setInterval(function () { if (document.hidden) return; s = (s + 1) % 6; t.setAttribute("seed", String(9 + s)); }, 170);
+  })();
+
+  // barre de progression dans le cahier
+  (function progress() {
+    var bar = document.createElement("div"); bar.className = "prog"; bar.setAttribute("aria-hidden", "true");
+    var top = document.querySelector(".top"); if (!top) return; top.appendChild(bar);
+    function upd() { var m = document.documentElement.scrollHeight - innerHeight; bar.style.setProperty("--p", m > 0 ? Math.min(1, scrollY / m).toFixed(3) : 0); }
+    addEventListener("scroll", upd, { passive: true }); addEventListener("resize", upd); upd();
+  })();
+
+  // la planche du bandeau suit le curseur
+  (function tilt() {
+    if (REDUCE || !matchMedia("(pointer: fine)").matches) return;
+    var hero = document.querySelector(".hero"), plate = document.querySelector(".plate");
+    if (!hero || !plate) return;
+    hero.addEventListener("pointermove", function (e) {
+      if (plate.classList.contains("lab-on")) return;
+      var r = plate.getBoundingClientRect();
+      var px = (e.clientX - (r.left + r.width / 2)) / innerWidth, py = (e.clientY - (r.top + r.height / 2)) / innerHeight;
+      plate.style.transform = "perspective(900px) rotateY(" + (px * 16).toFixed(2) + "deg) rotateX(" + (-py * 16).toFixed(2) + "deg)";
+    });
+    hero.addEventListener("pointerleave", function () { plate.style.transform = ""; });
+  })();
+
+  // traînée d'encre du stylo + éclaboussure au clic (souris seulement)
+  (function trail() {
+    if (REDUCE || !matchMedia("(pointer: fine)").matches) return;
+    var c = document.createElement("canvas"); c.setAttribute("aria-hidden", "true");
+    c.style.cssText = "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60";
+    document.body.appendChild(c);
+    var ctx = c.getContext("2d"), dots = [], run = false, w = 0, h = 0, lx = -1, ly = -1;
+    function size() { var d = Math.min(devicePixelRatio || 1, 2); w = innerWidth; h = innerHeight; c.width = w * d; c.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+    size(); addEventListener("resize", size);
+    function start() { if (!run) { run = true; requestAnimationFrame(tick); } }
+    addEventListener("pointermove", function (e) {
+      if (e.pointerType !== "mouse") return;
+      var dx = e.clientX - lx, dy = e.clientY - ly;
+      if (lx >= 0 && dx * dx + dy * dy < 81) return;
+      lx = e.clientX; ly = e.clientY;
+      dots.push({ x: lx, y: ly, r: 3.5 + Math.random() * 3, l: 1, vx: (Math.random() - .5) * .8, vy: Math.random() * .8, red: Math.random() < .2 });
+      start();
+    }, { passive: true });
+    addEventListener("pointerdown", function (e) {
+      if (e.pointerType !== "mouse") return;
+      for (var i = 0; i < 9; i++) { var a = Math.random() * 6.283, v = 1 + Math.random() * 3; dots.push({ x: e.clientX, y: e.clientY, r: 2 + Math.random() * 4, l: 1, vx: Math.cos(a) * v, vy: Math.sin(a) * v, red: Math.random() < .3 }); }
+      start();
+    }, { passive: true });
+    function tick() {
+      ctx.clearRect(0, 0, w, h);
+      var cs = getComputedStyle(document.documentElement);
+      var blue = cs.getPropertyValue("--blue-pen").trim() || "#2447d6", red = cs.getPropertyValue("--red-pen").trim() || "#d93a3f";
+      for (var i = dots.length - 1; i >= 0; i--) {
+        var d = dots[i]; d.l -= 0.035; d.x += d.vx; d.y += d.vy; d.vx *= .94; d.vy *= .94;
+        if (d.l <= 0) { dots.splice(i, 1); continue; }
+        ctx.globalAlpha = d.l * .75; ctx.fillStyle = d.red ? red : blue;
+        ctx.beginPath(); ctx.arc(d.x, d.y, d.r * d.l, 0, 6.2832); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      if (dots.length) requestAnimationFrame(tick); else { run = false; ctx.clearRect(0, 0, w, h); }
+    }
+  })();
+
+  // bascule jour / nuit
+  (function theme() {
+    var btn = $("#theme"); if (!btn) return;
+    var root = document.documentElement, mq = matchMedia("(prefers-color-scheme: dark)");
+    function isDark() { var t = root.getAttribute("data-theme"); return t ? t === "dark" : mq.matches; }
+    function paint() { var d = isDark(); btn.setAttribute("data-dark", d ? "true" : "false"); btn.setAttribute("aria-pressed", d ? "true" : "false"); }
+    try { var s = localStorage.getItem("explorium-theme"); if (s === "dark" || s === "light") root.setAttribute("data-theme", s); } catch (e) {}
+    paint();
+    if (mq.addEventListener) mq.addEventListener("change", paint);
+    btn.addEventListener("click", function () {
+      var next = isDark() ? "light" : "dark";
+      function apply() { root.setAttribute("data-theme", next); try { localStorage.setItem("explorium-theme", next); } catch (e) {} paint(); }
+      if (document.startViewTransition && !REDUCE) document.startViewTransition(apply); else apply();
+      var r = btn.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 10, { far: 45 });
+    });
+  })();
+
+  // une question pour toi : liée au formulaire
+  var QS = [
+    { id: "mpc", q: "Pourquoi le ciel est-il bleu le jour et rouge au coucher du soleil ?", h: "L'air diffuse beaucoup plus la lumière bleue que la rouge. Au coucher du soleil, la lumière traverse bien plus d'atmosphère : le bleu est dispersé sur le côté et il ne reste que le rouge." },
+    { id: "mpc", q: "Combien vaut 0,999… avec des 9 à l'infini ?", h: "Exactement 1. Pose x = 0,999… puis calcule 10x − x : tu obtiens 9, donc x = 1." },
+    { id: "mpc", q: "Pourquoi la glace flotte-t-elle sur l'eau ?", h: "En gelant, les molécules d'eau forment un réseau plus aéré. La glace est donc moins dense que l'eau liquide." },
+    { id: "pgr", q: "Comment un ordinateur trie-t-il un million de nombres en une fraction de seconde ?", h: "Il ne compare pas tout avec tout. Des algorithmes comme le tri fusion coupent le problème en deux, encore et encore, puis recollent les morceaux triés." },
+    { id: "rob", q: "Comment un robot aspirateur évite-t-il de tomber dans un escalier ?", h: "Des capteurs infrarouges sous lui mesurent la distance au sol. Si elle grandit d'un coup, il comprend qu'il y a du vide et recule." },
+    { id: "rob", q: "Comment faire marcher un robot sur deux jambes sans qu'il tombe ?", h: "Il mesure son inclinaison des centaines de fois par seconde et corrige chaque mouvement aussitôt. On appelle ça de la régulation." },
+    { id: "dia", q: "Comment une IA reconnaît-elle un chat sur une photo ?", h: "Personne ne lui a décrit un chat. Elle a appris des motifs (contours, textures, formes) sur des millions d'images étiquetées." },
+    { id: "dia", q: "Comment une appli devine-t-elle ce que tu vas aimer ?", h: "Elle compare tes choix à ceux de beaucoup de gens aux goûts proches des tiens, puis te propose ce qu'ils ont aimé." },
+    { id: "cbr", q: "Pourquoi un mot de passe long vaut-il mieux qu'un mot de passe compliqué ?", h: "Chaque caractère en plus multiplie le nombre d'essais à tenter. La longueur fait grandir ce nombre bien plus vite que quelques symboles." },
+    { id: "cbr", q: "Comment envoyer un message secret que même ton voisin ne peut pas lire ?", h: "Avec le chiffrement : une clé transforme le message en charabia. César décalait les lettres de l'alphabet, aujourd'hui on utilise des maths bien plus solides." }
+  ];
+  (function questions() {
+    var n = QS.length, order = [], i, j, tmp, pos = 0;
+    for (i = 0; i < n; i++) order.push(i);
+    for (i = n - 1; i > 1; i--) { j = 1 + Math.floor(Math.random() * i); tmp = order[i]; order[i] = order[j]; order[j] = tmp; }
+    var body = $("#qbody"), tag = $("#qtag"), text = $("#qtext"), hint = $("#qhint"), hb = $("#qhintbtn"), nx = $("#qnext"), ad = $("#qadd");
+    if (!body) return;
+    function subj(id) { return SUBJECTS.filter(function (s) { return s.id === id; })[0]; }
+    function show() {
+      var q = QS[order[pos]], s = subj(q.id);
+      tag.textContent = s.name; text.textContent = q.q;
+      hint.hidden = true; hint.textContent = ""; hb.textContent = "Voir l'indice";
+      ad.textContent = selected[q.id] ? s.name + " est dans ta fiche ✓" : "Ajouter " + s.name + " à ma fiche";
+    }
+    hb.addEventListener("click", function () {
+      var q = QS[order[pos]];
+      if (hint.hidden) {
+        hint.textContent = "";
+        var b = document.createElement("b"); b.textContent = "indice :";
+        hint.appendChild(b); hint.appendChild(document.createTextNode(q.h));
+        hint.hidden = false; hb.textContent = "Cacher l'indice";
+      } else { hint.hidden = true; hb.textContent = "Voir l'indice"; }
+    });
+    nx.addEventListener("click", function () {
+      pos = (pos + 1) % n;
+      if (REDUCE) { show(); return; }
+      body.classList.remove("swap"); void body.offsetWidth; body.classList.add("swap");
+      setTimeout(show, 260);
+      setTimeout(function () { body.classList.remove("swap"); }, 600);
+    });
+    ad.addEventListener("click", function () {
+      var q = QS[order[pos]]; setSubject(q.id, true);
+      var r = ad.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 16, { far: 60 });
+      ad.textContent = subj(q.id).name + " est dans ta fiche ✓";
+    });
+  })();
+
+  // barre « Rejoindre » collée en bas sur mobile
+  (function dock() {
+    var d = $("#dock"), ins = $("#inscription"); if (!d || !ins) return;
+    function upd() { var r = ins.getBoundingClientRect(); var inView = r.top < innerHeight * 0.8 && r.bottom > 0; d.classList.toggle("show", scrollY > 420 && !inView); }
+    addEventListener("scroll", upd, { passive: true }); addEventListener("resize", upd); upd();
+  })();
+
+  // la boîte à domaines : des autocollants qu'on attrape, qu'on lance, et qui servent à choisir ses matières
+  (function lab() {
+    var plate = document.querySelector(".plate"), cells = document.querySelector(".plate .cells");
+    if (!plate || !cells || REDUCE) return;
+    var DEFS = [
+      { id: "mpc", label: "maths & PC", name: "Maths & PC" },
+      { id: "pgr", label: "code", name: "Programmation" },
+      { id: "rob", label: "robots", name: "Robotique & IA" },
+      { id: "dia", label: "data & IA", name: "Data science & IA" },
+      { id: "cbr", label: "cyber", name: "Cybersécurité" },
+      { id: "q", label: "et toi ?", name: "Une question pour toi" }
+    ];
+    var box = document.createElement("div"); box.className = "lab";
+    box.setAttribute("role", "group");
+    box.setAttribute("aria-label", "Les cinq domaines du club. Attrape-les, lance-les, touche-en un pour l'ajouter à ta fiche.");
+    var tip = document.createElement("span"); tip.className = "tip"; tip.setAttribute("aria-hidden", "true"); tip.textContent = "attrape-moi, lance-moi !";
+    box.appendChild(tip);
+    var sh = document.createElement("button"); sh.type = "button"; sh.className = "shake"; sh.textContent = "↻ secouer";
+    box.appendChild(sh);
+    var bodies = [];
+    DEFS.forEach(function (d) {
+      var el = document.createElement("button"); el.type = "button"; el.className = "stk" + (d.id === "q" ? " ask" : "");
+      if (d.id === "q") { var qb = document.createElement("b"); qb.textContent = "?"; qb.setAttribute("aria-hidden", "true"); el.appendChild(qb); }
+      else el.appendChild(icon(d.id));
+      var sp = document.createElement("span"); sp.textContent = d.label; el.appendChild(sp);
+      box.appendChild(el);
+      bodies.push({ id: d.id, name: d.name, el: el, x: 0, y: 0, vx: 0, vy: 0, r: 40, tilt: 0 });
+    });
+    plate.classList.add("lab-on"); cells.hidden = true; plate.appendChild(box);
+
+    var W = 0, H = 0, R = 40, drag = null, raf = 0, visible = true, last = 0, calm = 0;
+
+    function measure() {
+      W = box.clientWidth; H = box.clientHeight;
+      R = Math.max(34, Math.min(52, W / 8)); box.style.setProperty("--r", R + "px");
+      bodies.forEach(function (b) { b.r = R; b.x = Math.min(Math.max(b.x, R), Math.max(R, W - R)); b.y = Math.min(b.y, H - R); });
+    }
+    function drop() {
+      measure();
+      bodies.forEach(function (b, i) {
+        b.x = R + (W - 2 * R) * ((i % 3) / 2); b.y = R + 4 + Math.floor(i / 3) * (R * 2.1);
+        b.vx = (Math.random() - .5) * 260; b.vy = 0;
+      });
+      render(); wake();
+    }
+    function step(dt) {
+      var G = 2000, i, j, a, b;
+      for (i = 0; i < bodies.length; i++) {
+        a = bodies[i]; if (a === drag) continue;
+        a.vy += G * dt; a.x += a.vx * dt; a.y += a.vy * dt;
+        if (a.x < a.r) { a.x = a.r; a.vx = Math.abs(a.vx) * .5; } else if (a.x > W - a.r) { a.x = W - a.r; a.vx = -Math.abs(a.vx) * .5; }
+        if (a.y < a.r) { a.y = a.r; a.vy = Math.abs(a.vy) * .4; }
+        if (a.y > H - a.r) { a.y = H - a.r; a.vy = a.vy > 140 ? -a.vy * .42 : 0; a.vx *= Math.max(0, 1 - 3.2 * dt); }
+      }
+      for (var it = 0; it < 3; it++) {
+        for (i = 0; i < bodies.length; i++) for (j = i + 1; j < bodies.length; j++) {
+          a = bodies[i]; b = bodies[j];
+          var dx = b.x - a.x, dy = b.y - a.y, d = Math.sqrt(dx * dx + dy * dy), m = a.r + b.r;
+          if (d === 0) { b.x += .5; continue; }
+          if (d >= m) continue;
+          var nx = dx / d, ny = dy / d, ov = m - d;
+          var aw = a === drag ? 0 : 1, bw = b === drag ? 0 : 1, tw = aw + bw;
+          if (!tw) continue;
+          a.x -= nx * ov * aw / tw; a.y -= ny * ov * aw / tw; b.x += nx * ov * bw / tw; b.y += ny * ov * bw / tw;
+          var rv = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
+          if (rv < 0) { var jn = -1.4 * rv / tw; a.vx -= jn * nx * aw; a.vy -= jn * ny * aw; b.vx += jn * nx * bw; b.vy += jn * ny * bw; }
+        }
+        for (i = 0; i < bodies.length; i++) {
+          a = bodies[i]; if (a === drag) continue;
+          a.x = Math.min(Math.max(a.x, a.r), W - a.r); a.y = Math.min(Math.max(a.y, a.r), H - a.r);
+        }
+      }
+    }
+    function render() {
+      bodies.forEach(function (b) {
+        var tt = Math.max(-16, Math.min(16, b.vx * .02));
+        b.tilt += (tt - b.tilt) * .2;
+        b.el.style.transform = "translate3d(" + (b.x - b.r).toFixed(1) + "px," + (b.y - b.r).toFixed(1) + "px,0) rotate(" + b.tilt.toFixed(1) + "deg)";
+      });
+    }
+    function frame(t) {
+      raf = 0;
+      var dt = Math.min(.033, last ? (t - last) / 1000 : .016); last = t;
+      step(dt / 2); step(dt / 2);
+      render();
+      var maxv = 0; bodies.forEach(function (b) { maxv = Math.max(maxv, Math.abs(b.vx) + Math.abs(b.vy)); });
+      calm = (maxv < 40 && !drag) ? calm + dt : 0;
+      if (calm > .7) { bodies.forEach(function (b) { b.vx = 0; b.vy = 0; b.tilt = 0; }); render(); last = 0; return; }
+      kick();
+    }
+    function kick() { if (!raf && visible && document.visibilityState !== "hidden") raf = requestAnimationFrame(frame); }
+    function wake() { calm = 0; last = 0; kick(); }
+
+    function label(b) {
+      b.el.setAttribute("aria-label", b.name + (selected[b.id] ? " : choisi, touche pour retirer" : " : touche pour l'ajouter à ta fiche"));
+    }
+    syncLab = function () {
+      bodies.forEach(function (b) {
+        if (b.id === "q") return;
+        b.el.setAttribute("aria-pressed", selected[b.id] ? "true" : "false"); label(b);
+      });
+    };
+    bodies.forEach(function (b) {
+      if (b.id === "q") b.el.setAttribute("aria-label", "Une question pour toi : aller à la section");
+      else { b.el.setAttribute("aria-pressed", "false"); label(b); }
+    });
+
+    function tap(b) {
+      var r = b.el.getBoundingClientRect();
+      burst(r.left + r.width / 2, r.top + r.height / 2, b.id === "q" ? 14 : 12, { far: 52 });
+      if (b.id === "q") { var q = document.querySelector("#question"); if (q) q.scrollIntoView({ behavior: "smooth" }); return; }
+      setSubject(b.id, !selected[b.id]);
+      b.vy = -520; wake();
+    }
+    bodies.forEach(function (b) {
+      var el = b.el, st = null;
+      el.addEventListener("pointerdown", function (e) {
+        if (e.button > 0) return;
+        var r = box.getBoundingClientRect();
+        st = { id: e.pointerId, ox: e.clientX - r.left - box.clientLeft - b.x, oy: e.clientY - r.top - box.clientTop - b.y, sx: e.clientX, sy: e.clientY, moved: 0, lt: e.timeStamp, vx: 0, vy: 0 };
+        drag = b; el.classList.add("grab");
+        try { el.setPointerCapture(e.pointerId); } catch (x) {}
+        box.classList.add("touched");
+        b.vx = 0; b.vy = 0; wake(); e.preventDefault();
+      });
+      el.addEventListener("pointermove", function (e) {
+        if (!st || e.pointerId !== st.id) return;
+        var r = box.getBoundingClientRect();
+        var nx = e.clientX - r.left - box.clientLeft - st.ox, ny = e.clientY - r.top - box.clientTop - st.oy;
+        nx = Math.min(Math.max(nx, b.r), W - b.r); ny = Math.min(Math.max(ny, b.r), H - b.r);
+        var dtm = Math.max(1, e.timeStamp - st.lt);
+        st.vx = st.vx * .5 + ((nx - b.x) / dtm * 1000) * .5; st.vy = st.vy * .5 + ((ny - b.y) / dtm * 1000) * .5;
+        st.lt = e.timeStamp; b.x = nx; b.y = ny; b.vx = st.vx; b.vy = st.vy;
+        st.moved = Math.max(st.moved, Math.hypot(e.clientX - st.sx, e.clientY - st.sy));
+        wake();
+      });
+      function end(e) {
+        if (!st || e.pointerId !== st.id) return;
+        var v = st; st = null; drag = null; el.classList.remove("grab");
+        if (v.moved < 7) { b.vx = 0; b.vy = 0; tap(b); }
+        else {
+          var cap = 2600; b.vx = Math.max(-cap, Math.min(cap, v.vx)); b.vy = Math.max(-cap, Math.min(cap, v.vy));
+          if (e.timeStamp - v.lt > 90) { b.vx *= .15; b.vy *= .15; }
+        }
+        wake();
+      }
+      el.addEventListener("pointerup", end); el.addEventListener("pointercancel", end);
+      el.addEventListener("click", function (e) { if (e.detail === 0) tap(b); });
+    });
+    sh.addEventListener("click", function () {
+      bodies.forEach(function (b) { b.vy -= 900 + Math.random() * 800; b.vx += (Math.random() - .5) * 1100; });
+      box.classList.add("touched"); wake();
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) wake(); }, { threshold: 0.01 }).observe(box);
+    }
+    document.addEventListener("visibilitychange", function () { if (document.visibilityState !== "hidden") wake(); });
+    var rt; addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { measure(); render(); wake(); }, 120); });
+    drop();
+  })();
+
+  // ---------- espace responsable ----------
+  var docs = [];
+  function startAdmin() {
+    $("#inscrits").hidden = false; $("#navAdmin").hidden = false;
+    var timer = setTimeout(function () { $("#adminNote").textContent = "Les fiches mettent du temps à arriver. Elles peuvent ne pas être à jour."; }, 10000);
+    db.collection("inscriptions").orderBy("createdAt", "desc").onSnapshot(function (snap) {
+      clearTimeout(timer);
+      docs = snap.docs.map(function (s) { var x = s.data() || {}; x._id = s.id; return x; });
+      renderAdmin();
+    }, function () { clearTimeout(timer); $("#adminNote").textContent = "Impossible de lire les fiches pour le moment."; });
+  }
+  function td(text) { var c = document.createElement("td"); c.textContent = text == null ? "" : String(text); return c; }
+  function renderAdmin() {
+    $("#adminNote").textContent = docs.length ? docs.length + (docs.length > 1 ? " fiches reçues." : " fiche reçue.") : "Aucune fiche pour l'instant. Les inscriptions envoyées depuis cette page apparaissent ici.";
+    var stats = $("#stats"); stats.textContent = "";
+    SUBJECTS.forEach(function (s) {
+      var n = docs.filter(function (d) { return (d.matieres || []).indexOf(s.name) >= 0; }).length;
+      var sp = document.createElement("span"); sp.textContent = s.name + " : " + n; stats.appendChild(sp);
+    });
+    var body = $("#rows"); body.textContent = "";
+    docs.forEach(function (d) {
+      var tr = document.createElement("tr");
+      tr.appendChild(td(d.createdAt ? new Date(d.createdAt).toLocaleDateString("fr-FR") : ""));
+      tr.appendChild(td(d.nom)); tr.appendChild(td(d.age)); tr.appendChild(td(d.classe));
+      tr.appendChild(td((d.matieres || []).join(", ")));
+      tr.appendChild(td([d.email, d.tel].filter(Boolean).join("\n")));
+      tr.lastChild.style.whiteSpace = "pre-line";
+      var act = document.createElement("td"), b = document.createElement("button");
+      b.type = "button"; b.textContent = "Supprimer";
+      b.addEventListener("click", async function () {
+        if (!b.classList.contains("sure")) { b.classList.add("sure"); b.textContent = "Confirmer"; return; }
+        try { await db.doc("inscriptions/" + d._id).delete(); } catch (e) { b.textContent = "Échec"; }
+      });
+      act.appendChild(b); tr.appendChild(act); body.appendChild(tr);
+    });
+  }
+  $("#csv").addEventListener("click", async function () {
+    var st = $("#csvStatus");
+    function q(v) { return '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"'; }
+    var lines = [["Reçue le", "Nom", "Âge", "Classe", "Matières", "E-mail", "Téléphone", "Remarque"].map(q).join(",")];
+    docs.forEach(function (d) {
+      lines.push([d.createdAt, d.nom, d.age, d.classe, (d.matieres || []).join(" | "), d.email, d.tel, d.remarque].map(q).join(","));
+    });
+    try {
+      var dl = await window.claude.use("downloads");
+      if (!dl) { st.textContent = "L'export n'est pas disponible ici."; return; }
+      await dl.save({ filename: "inscriptions-explorium.csv", data: "﻿" + lines.join("\n") });
+      st.textContent = "Fichier enregistré.";
+    } catch (e) { st.textContent = e && e.code === "declined" ? "Export annulé." : "L'export n'a pas pu se faire."; }
+  });
+})();
+</script>
+
+</body>
+</html>
