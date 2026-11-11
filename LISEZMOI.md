@@ -1,26 +1,26 @@
-# Site EXPLORIUM : mise en ligne sur GitHub
+# Site EXPLORIUM : mise en ligne et réglages
 
-Contenu du dossier :
+Site créé par **Yoloops**. Contacts du club : explorium839@gmail.com · +261 34 42 529 61
 
-- `index.html` : tout le site (une seule page, rien d'autre à installer).
-- `apps-script.gs` : le petit script qui range les inscriptions dans un Google Sheet.
+## Contenu du dossier
+
+- `index.html` : tout le site (une seule page).
+- `config.js` : le seul fichier de réglages. Il n'est jamais écrasé quand tu remplaces `index.html`.
+- `apps-script.gs` : le script qui range les inscriptions dans un Google Sheet.
 - `regles.html`, `matieres.html`, `inscription.html`, `mpc.html`, `pgr.html`, `dia.html`, `cbr.html` : redirigent les anciens liens vers la nouvelle page.
 - `.nojekyll` : dit à GitHub Pages de publier les fichiers tels quels.
 
-## 1. Mettre le site en ligne
+## 1. Mettre à jour le site sur GitHub
 
-1. Ouvre ton dépôt `Bulletin8` sur github.com.
-2. Clique sur **Add file > Upload files** et glisse tout le contenu de ce dossier (y compris `.nojekyll`).
-   Les fichiers du même nom remplacent les anciens. Ne supprime pas `logo_explorium.png`.
-3. Clique sur **Commit changes**.
-4. Va dans **Settings > Pages**. Choisis **Deploy from a branch**, la branche `main` et le dossier `/ (root)`.
-   Si ton site marche déjà, c'est déjà réglé.
-5. Attends une minute. Le site est sur `https://tadashi-tech.github.io/Bulletin8/`.
+1. Ouvre ton dépôt sur github.com, clique sur **Add file > Upload files**.
+2. Glisse **le contenu** de ce dossier (pas le dossier lui-même). Les fichiers du même nom sont remplacés.
+3. Clique sur **Commit changes**. Une minute plus tard, le site est à jour.
 
-## 2. Recevoir les inscriptions (à faire une fois, 5 minutes)
+Si tu avais déjà collé l'adresse des inscriptions dans l'ancien `index.html`, elle a disparu : remets-la dans `config.js` (étape 2). C'est la dernière fois, car elle vit désormais dans ce fichier.
 
-GitHub Pages ne peut pas enregistrer de données. Sans cette étape, le formulaire affiche la fiche de l'élève à copier
-et à t'envoyer, mais rien n'arrive tout seul chez toi.
+## 2. Recevoir les inscriptions
+
+GitHub Pages ne peut pas enregistrer de données. Sans cette étape, le formulaire affiche la fiche à copier et à envoyer au club.
 
 ### Option A : Google Sheet (gratuit, recommandé)
 
@@ -29,26 +29,30 @@ et à t'envoyer, mais rien n'arrive tout seul chez toi.
 3. Clique sur **Déployer > Nouveau déploiement**. Type : **Application Web**.
    Exécuter en tant que : **Moi**. Qui a accès : **Tout le monde**. Clique sur **Déployer** et autorise l'accès.
 4. Copie l'**URL de l'application Web** (elle commence par `https://script.google.com/macros/s/`).
-5. Dans GitHub, ouvre `index.html`, clique sur le crayon, cherche `var ENDPOINT = "";` (Ctrl+F)
-   et colle l'URL entre les guillemets. Clique sur **Commit changes**.
-6. Fais une inscription test sur le site : une ligne apparaît dans l'onglet `Inscriptions`.
+5. Sur GitHub, ouvre `config.js`, clique sur le crayon et colle l'URL entre les guillemets de `endpoint: ""`. **Commit changes**.
+6. Fais une inscription test : une ligne apparaît dans l'onglet `Inscriptions`.
 
-Si tu modifies le script plus tard, refais **Déployer > Gérer les déploiements > Modifier > Nouvelle version**.
+**Si tu avais déjà un script déployé :** colle la nouvelle version de `apps-script.gs` (elle ajoute les colonnes *Formule* et *Projets*), puis **Déployer > Gérer les déploiements > crayon > Version : Nouvelle version > Déployer**. L'URL ne change pas.
 
-### Option B : Formspree (reçois chaque fiche par e-mail)
+### Option B : Formspree (chaque fiche arrive par e-mail)
 
 1. Crée un compte gratuit sur <https://formspree.io> et un nouveau formulaire.
-2. Copie son adresse (`https://formspree.io/f/xxxxxxx`) et colle-la dans `var ENDPOINT = "";` comme ci-dessus.
+2. Colle son adresse (`https://formspree.io/f/xxxxxxx`) dans `config.js`.
 
-## 3. Réglages facultatifs dans `index.html`
+## 3. Ce que contient une fiche
 
-- `CONTACT_TEXT` : une phrase affichée à la fin si l'envoi échoue, par exemple « WhatsApp du club : +… ».
-- `FORM_URL` : un lien (Google Form de secours, par exemple) proposé après l'envoi.
-- `SUBJECTS` : les cinq matières. `QS` : les questions de la section « Une question pour toi ».
+Nom, âge, classe, **formule** (cours et projets, cours seulement, ou projets seulement), matières, **projets** choisis, e-mail, téléphone et remarque.
+On peut s'inscrire uniquement pour un projet, sans choisir de matière.
 
-## 4. À savoir
+## 4. Modifier le contenu
+
+Dans `index.html` (ouvre-le avec le crayon sur GitHub, puis Ctrl+F) :
+
+- Contacts : cherche `explorium839@gmail.com` et `+261 34 42 529 61`.
+- Projets : cherche `Nos projets hors des cours` (textes), et `PROJECTS` (noms dans le formulaire).
+- Matières : `SUBJECTS`. Questions de la section « Une question pour toi » : `QS`.
+
+## 5. À savoir
 
 - Les fiches contiennent des données d'élèves, parfois mineurs. Ne partage le Google Sheet qu'avec les responsables du club.
-- L'adresse du script est visible dans le code de la page : n'importe qui peut y envoyer une fiche. Le formulaire a un
-  champ piège contre les robots simples, mais vérifie le Sheet de temps en temps.
-- Le panneau « Fiches reçues » n'existe pas sur GitHub : tes fiches sont dans le Google Sheet (ou dans tes e-mails).
+- L'adresse du script est visible dans le code de la page : n'importe qui peut y envoyer une fiche. Le formulaire a un champ piège contre les robots simples, mais regarde le Sheet de temps en temps.

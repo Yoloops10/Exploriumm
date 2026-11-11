@@ -1,14 +1,16 @@
 <!doctype html>
+<!-- EXPLORIUM · site créé par Yoloops -->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="author" content="Yoloops">
 <meta name="theme-color" content="#f6f8fd" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14222b" media="(prefers-color-scheme: dark)">
-<meta name="description" content="EXPLORIUM, club de sciences, de programmation, de robotique, de data science et de cybersécurité. Découvre le club et inscris-toi.">
+<meta name="description" content="EXPLORIUM, club de sciences, de programmation, de robotique, de data science et de cybersécurité. Cours, projets pour l'école, inscription.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="EXPLORIUM | Explore, Learn, Create">
-<meta property="og:description" content="EXPLORIUM, club de sciences, de programmation, de robotique, de data science et de cybersécurité. Découvre le club et inscris-toi.">
+<meta property="og:description" content="EXPLORIUM, club de sciences, de programmation, de robotique, de data science et de cybersécurité. Cours, projets pour l'école, inscription.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%23ffe047%27/%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%2315204a%27%20stroke-width%3D%274%27%3E%3Cellipse%20cx%3D%2732%27%20cy%3D%2732%27%20rx%3D%2724%27%20ry%3D%279%27/%3E%3Cellipse%20cx%3D%2732%27%20cy%3D%2732%27%20rx%3D%2724%27%20ry%3D%279%27%20transform%3D%27rotate%2860%2032%2032%29%27/%3E%3Cellipse%20cx%3D%2732%27%20cy%3D%2732%27%20rx%3D%2724%27%20ry%3D%279%27%20transform%3D%27rotate%28120%2032%2032%29%27/%3E%3C/g%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%275%27%20fill%3D%27%23d93a3f%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -385,7 +387,7 @@ button, .btn, .pick, .chips label { touch-action: manipulation; }
 .lab .stk { position: absolute; left: 0; top: 0; width: calc(var(--r) * 2); height: calc(var(--r) * 2); margin: 0; padding: 0; border: 2.5px solid var(--ink); border-radius: 50%; background: var(--card); color: var(--ink); box-shadow: 3px 3px 0 var(--ink); display: grid; place-items: center; align-content: center; gap: 0; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; will-change: transform; font: 700 calc(var(--r) * .31)/1 var(--font-hand); text-align: center; }
 .lab .stk .ic { width: calc(var(--r) * .8); height: calc(var(--r) * .8); }
 .lab .stk span { margin-top: -2px; }
-.lab .stk[aria-pressed="true"] { background: var(--hl-solid); color: var(--on-hl); }
+
 .lab .stk.ask { background: transparent; border-style: dashed; box-shadow: none; color: var(--red-pen); }
 .lab .stk.ask b { font: 800 calc(var(--r) * .9)/.9 var(--font-display); font-stretch: 75%; }
 .lab .stk.grab { cursor: grabbing; z-index: 3; box-shadow: 7px 8px 0 var(--ink); }
@@ -397,6 +399,54 @@ button, .btn, .pick, .chips label { touch-action: manipulation; }
 html { scrollbar-color: var(--ink-soft) var(--paper); }
 @media (pointer: fine) {
   body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M3 29l2-8 16-16a3 3 0 0 1 4 0l2 2a3 3 0 0 1 0 4L11 27z' fill='%23ffe047' stroke='%2315204a' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M3 29l2-8 6 6z' fill='%23ffffff' stroke='%2315204a' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M3 29l1-3.5 2.5 2.5z' fill='%2315204a'/%3E%3C/svg%3E") 3 29, auto; }
+}
+/* ===== projets, contact, crédit ===== */
+.lab .stk[data-on="true"] { background: var(--hl-solid); color: var(--on-hl); }
+.plate a.cell { text-decoration: none; color: var(--ink-soft); }
+.pill { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; margin-top: 22px; padding: 9px 16px 9px 10px; border: 2px solid var(--ink); border-radius: 99px; background: var(--hl-solid); color: var(--on-hl); font-weight: 600; font-size: 15px; line-height: 1.3; text-decoration: none; box-shadow: 3px 3px 0 var(--ink); animation: fadeUp .8s .85s ease-out backwards; transition: transform .12s, box-shadow .12s; }
+.pill:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+.pill b { font: 700 13px/1 var(--font-body); text-transform: uppercase; letter-spacing: .06em; background: #d93a3f; color: #fff; padding: 5px 9px; border-radius: 99px; }
+.subj.flash { animation: flashPop 1.6s ease-in-out; }
+.subj.flash::before { animation: flashBg 1.6s ease-in-out; }
+@keyframes flashPop { 0%, 100% { scale: 1; } 20%, 60% { scale: 1.035; } 40% { scale: 1; } }
+@keyframes flashBg { 0%, 70% { background: var(--hl-solid); } 100% { background: var(--card); } }
+
+#projets { --ink: #15204a; --ink-soft: #33406b; --card: #ffffff; --red-pen: #b3261e; --blue-pen: #1d3bb5; --margin: #b3261e; --grid-strong: rgba(21, 32, 74, .22);
+  background: var(--hl-solid); color: var(--ink); border-block: 3px solid var(--ink);
+  margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+#projets .btn { background: var(--ink); color: #ffffff; box-shadow: 4px 4px 0 var(--red-pen); }
+#projets .btn:hover { box-shadow: 5px 5px 0 var(--red-pen); }
+#projets .hl { --hl: rgba(255, 255, 255, .85); }
+.openbox { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; padding: 28px 28px 26px; margin-top: 42px; rotate: -.6deg; }
+.openbox p { flex: 1 1 320px; min-width: 0; font: 700 clamp(24px, 3vw, 36px)/1.12 var(--font-display); font-stretch: 80%; letter-spacing: -.01em; text-wrap: balance; }
+.stampbig2 { position: absolute; top: -20px; right: 18px; rotate: 5deg; padding: 4px 12px 2px; border: 3px double var(--red-pen); border-radius: 6px; background: var(--card); color: var(--red-pen); font: 800 22px/1.1 var(--font-display); font-stretch: 80%; text-transform: uppercase; letter-spacing: .04em; }
+.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 38px 30px; margin-top: 50px; }
+.proj { padding: 30px 24px 24px; display: flex; flex-direction: column; gap: 12px; transition: rotate .3s ease, translate .3s ease; }
+.projects .proj:nth-child(1) { rotate: -1deg; } .projects .proj:nth-child(2) { rotate: .8deg; } .projects .proj:nth-child(3) { rotate: -.5deg; }
+.projects .proj:hover { rotate: 0deg; translate: 0 -6px; }
+.proj .ic { width: 72px; height: 72px; color: var(--ink); filter: url(#scribble); }
+.proj h3 { font-size: 30px; font-weight: 800; line-height: 1.02; }
+.proj p { color: var(--ink-soft); flex: 1; }
+.fhint { margin-top: 12px; font-size: 14.5px; color: var(--ink-soft); }
+fieldset.off { opacity: .5; transition: opacity .2s; }
+fieldset.off:focus-within, fieldset.off:hover { opacity: 1; }
+
+.contact { padding: clamp(24px, 4vw, 40px); display: grid; gap: 28px; margin-top: 40px; }
+.crow { display: grid; grid-template-columns: 130px minmax(0, 1fr) auto; gap: 8px 24px; align-items: center; }
+.crow .mono { color: var(--red-pen); }
+.cval { font: 800 clamp(26px, 3.8vw, 44px)/1.08 var(--font-display); font-stretch: 80%; letter-spacing: -.01em; overflow-wrap: anywhere; user-select: text; -webkit-user-select: text; }
+.cact { display: flex; flex-wrap: wrap; gap: 12px; }
+.contact .status { margin: 0; }
+.contact .status:empty { display: none; }
+.credit { background: linear-gradient(transparent 55%, var(--hl) 55%); padding: 0 .15em; font-weight: 700; color: var(--ink); }
+footer a { color: var(--blue-pen); }
+@media (max-width: 900px) { .crow { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 640px) {
+  .proj { padding: 28px 20px 20px; }
+  .openbox { padding: 26px 20px 22px; }
+  .stampbig2 { font-size: 18px; right: 10px; }
+  .pill { font-size: 14px; }
 }
 @media (max-width: 520px) {
   .wrap { padding-left: 18px; }
@@ -420,6 +470,9 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
     <symbol id="i-rob" viewBox="0 0 64 64"><rect x="12" y="22" width="40" height="30" rx="7"/><path d="M32 22V11M4 34v8M60 34v8M23 44h18"/><circle cx="32" cy="8" r="3"/><circle cx="24" cy="35" r="3.5" style="fill:var(--red-pen);stroke:none"/><circle cx="40" cy="35" r="3.5" style="fill:var(--red-pen);stroke:none"/></symbol>
     <symbol id="i-dia" viewBox="0 0 64 64"><path d="M8 8v48h50"/><rect x="16" y="38" width="9" height="18"/><rect x="29" y="27" width="9" height="29"/><rect x="42" y="16" width="9" height="40"/><path d="M14 30 28 20l12 4 16-14" style="stroke:var(--red-pen)"/></symbol>
     <symbol id="i-cbr" viewBox="0 0 64 64"><rect x="13" y="28" width="38" height="28" rx="5"/><path d="M21 28v-8a11 11 0 0 1 22 0v8M32 38v8"/><circle cx="32" cy="38" r="3.5" style="fill:var(--red-pen);stroke:none"/></symbol>
+    <symbol id="i-dig" viewBox="0 0 64 64"><rect x="6" y="9" width="52" height="35" rx="4"/><path d="M24 55h16M32 44v11"/><path d="M17 20l7 6-7 6M30 33h14"/></symbol>
+    <symbol id="i-vis" viewBox="0 0 64 64"><path d="M3 32C14 15 50 15 61 32 50 49 14 49 3 32z"/><circle cx="32" cy="32" r="10"/><circle cx="32" cy="32" r="4" style="fill:var(--red-pen);stroke:none"/><path d="M10 8H5v5M54 8h5v5M10 56H5v-5M54 56h5v-5"/></symbol>
+    <symbol id="i-bus" viewBox="0 0 64 64"><rect x="6" y="10" width="52" height="36" rx="7"/><path d="M6 28h52M23 10v18M41 10v18"/><circle cx="19" cy="52" r="5"/><circle cx="45" cy="52" r="5"/><circle cx="13" cy="38" r="2.6" style="fill:var(--red-pen);stroke:none"/></symbol>
   </defs>
 </svg>
 
@@ -428,7 +481,9 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
     <a class="brand" href="#accueil" aria-label="Explorium, accueil"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-orbit"/></svg>EXPLORIUM</a>
     <nav class="nav" aria-label="Navigation principale">
       <a href="#club">Le club</a>
+      <a href="#projets">Projets</a>
       <a href="#matieres">Matières</a>
+      <a href="#contact">Contact</a>
       <a href="#inscrits" id="navAdmin" hidden>Registre</a>
       <a href="#inscription" class="btn">Rejoindre</a>
       <button class="theme" id="theme" type="button" aria-label="Basculer entre le mode jour et le mode nuit" data-dark="false">
@@ -457,6 +512,7 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
         <h1><span>Explore</span><span><em class="hl" style="font-style:normal">l'inconnu.</em></span><span>Crée le futur.</span></h1>
         <svg class="squig" viewBox="0 0 400 16" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9C28 1 48 15 74 8S122 1 148 9 198 15 224 8 274 2 300 9s50 6 97-3" pathLength="1"/></svg>
         <p class="lead">Chez Explorium, la curiosité devient connaissance, les idées deviennent des projets et chaque découverte ouvre la suivante. Maths, code, robots, données et cybersécurité, en pratique et ensemble.</p>
+        <a class="pill" href="#projets"><b>Nouveau</b><span>Rejoins le club juste pour un projet, sans suivre les cours →</span></a>
         <div class="cta">
           <a class="btn" href="#inscription">Rejoindre le club →</a>
           <a class="btn plain" href="#matieres">Voir les matières</a>
@@ -467,12 +523,12 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
       <div class="plate sk tape" aria-label="Les cinq domaines du club">
         <span class="hand cap">planche n°1 : nos 5 domaines</span>
         <div class="cells">
-          <div class="cell"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-mpc"/></svg>maths &amp; PC</div>
-          <div class="cell"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-pgr"/></svg>code</div>
-          <div class="cell"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-rob"/></svg>robots</div>
-          <div class="cell"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-dia"/></svg>data &amp; IA</div>
-          <div class="cell"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-cbr"/></svg>cyber</div>
-          <div class="cell"><span class="q" aria-hidden="true">?</span>et toi ?</div>
+          <a class="cell" href="#subj-mpc"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-mpc"/></svg>maths &amp; PC</a>
+          <a class="cell" href="#subj-pgr"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-pgr"/></svg>code</a>
+          <a class="cell" href="#subj-rob"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-rob"/></svg>robots</a>
+          <a class="cell" href="#subj-dia"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-dia"/></svg>data &amp; IA</a>
+          <a class="cell" href="#subj-cbr"><svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-cbr"/></svg>cyber</a>
+          <a class="cell" href="#question"><span class="q" aria-hidden="true">?</span>et toi ?</a>
         </div>
       </div>
     </div>
@@ -537,6 +593,41 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
     </div>
   </section>
 
+  <section id="projets">
+    <div class="wrap">
+      <span class="hand chap">en plus des cours</span>
+      <h2 class="title">Nos projets hors des cours.</h2>
+      <p class="intro">Au club, on ne fait pas que des cours. On construit aussi de vrais projets, ouverts à tous les membres.</p>
+
+      <div class="openbox sk">
+        <span class="stampbig2" aria-hidden="true">Cours non obligatoires</span>
+        <p>Tu peux rejoindre le club <span class="hl">juste pour un projet</span>, sans suivre aucun cours.</p>
+        <a class="btn" href="#inscription" id="projOnly">Je m'inscris pour un projet →</a>
+      </div>
+
+      <div class="projects">
+        <article class="proj sk tape">
+          <svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-dig"/></svg>
+          <h3>Digitalisation de l'école</h3>
+          <p>Faire entrer l'école dans le numérique avec des outils simples qui facilitent la vie des élèves et de l'équipe.</p>
+          <button class="pick" type="button" id="ppick-dig" aria-pressed="false">Je participe</button>
+        </article>
+        <article class="proj sk tape">
+          <svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-vis"/></svg>
+          <h3>Système de reconnaissance visuelle</h3>
+          <p>Mettre en place un système capable de reconnaître ce qu'il voit grâce à une caméra et à l'intelligence artificielle.</p>
+          <button class="pick" type="button" id="ppick-vis" aria-pressed="false">Je participe</button>
+        </article>
+        <article class="proj sk tape">
+          <svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-bus"/></svg>
+          <h3>Tracker de bus scolaire</h3>
+          <p>Suivre le trajet du bus scolaire pour savoir où il se trouve et à quelle heure il arrive.</p>
+          <button class="pick" type="button" id="ppick-bus" aria-pressed="false">Je participe</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section id="matieres">
     <div class="wrap">
       <span class="hand chap">chapitre 2</span>
@@ -571,7 +662,7 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
       <aside>
         <span class="hand chap">chapitre 3</span>
         <h2 class="title">Le futur commence par une question.</h2>
-        <p class="intro">Remplis la fiche de préinscription. Elle prend deux minutes et tu peux choisir plusieurs matières.</p>
+        <p class="intro">Remplis la fiche de préinscription. Elle prend deux minutes. Choisis des matières, un projet, ou les deux : tu peux aussi t'inscrire rien que pour un projet.</p>
         <ol class="steps">
           <li><b>1</b><span>Tu remplis la fiche et tu l'envoies.</span></li>
           <li><b>2</b><span>L'équipe du club la reçoit et te recontacte par e-mail ou par téléphone.</span></li>
@@ -599,10 +690,26 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
             </div>
           </fieldset>
 
-          <fieldset>
-            <legend>Matières choisies *</legend>
+          <fieldset id="fs-formule">
+            <legend>Tu viens pour *</legend>
+            <div class="chips" role="radiogroup" aria-label="Tu viens pour">
+              <label><input type="radio" name="formule" id="f-both" value="Cours et projets" checked><span>Les cours et les projets</span></label>
+              <label><input type="radio" name="formule" id="f-cours" value="Cours seulement"><span>Les cours seulement</span></label>
+              <label><input type="radio" name="formule" id="f-proj" value="Projets seulement"><span>Les projets seulement</span></label>
+            </div>
+            <p class="fhint" id="fhint"></p>
+          </fieldset>
+
+          <fieldset id="fs-mat">
+            <legend>Matières</legend>
             <div class="chips" id="chips" role="group" aria-label="Matières choisies"></div>
             <span class="err" id="e-mat" role="alert" style="display:block;margin-top:10px"></span>
+          </fieldset>
+
+          <fieldset id="fs-proj">
+            <legend>Projets</legend>
+            <div class="chips" id="pchips" role="group" aria-label="Projets"></div>
+            <span class="err" id="e-proj" role="alert" style="display:block;margin-top:10px"></span>
           </fieldset>
 
           <fieldset>
@@ -663,12 +770,32 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
       <div class="stats" id="stats"></div>
       <div class="tablebox sk">
         <table>
-          <thead><tr><th>Reçue le</th><th>Nom</th><th>Âge</th><th>Classe</th><th>Matières</th><th>Contact</th><th></th></tr></thead>
+          <thead><tr><th>Reçue le</th><th>Nom</th><th>Âge</th><th>Classe</th><th>Formule</th><th>Matières</th><th>Projets</th><th>Contact</th><th></th></tr></thead>
           <tbody id="rows"></tbody>
         </table>
       </div>
       <div class="row"><button class="btn plain" type="button" id="csv">Exporter en CSV</button></div>
       <p class="status" id="csvStatus" role="status"></p>
+    </div>
+  </section>
+  <section id="contact">
+    <div class="wrap">
+      <span class="hand chap">une question ?</span>
+      <h2 class="title">Écris-nous.</h2>
+      <p class="intro">Pour t'inscrire, poser une question ou proposer une idée de projet, contacte le club.</p>
+      <div class="contact sk tape">
+        <div class="crow">
+          <span class="mono">E-mail</span>
+          <span class="cval">explorium839@gmail.com</span>
+          <div class="cact"><a class="btn" href="mailto:explorium839@gmail.com">Écrire</a><button class="btn plain" type="button" data-copy="explorium839@gmail.com">Copier</button></div>
+        </div>
+        <div class="crow">
+          <span class="mono">Téléphone</span>
+          <span class="cval">+261 34 42 529 61</span>
+          <div class="cact"><a class="btn" href="tel:+261344252961">Appeler</a><button class="btn plain" type="button" data-copy="+261 34 42 529 61">Copier</button></div>
+        </div>
+        <p class="status" id="contactStatus" role="status"></p>
+      </div>
     </div>
   </section>
 </main>
@@ -678,18 +805,20 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
 <footer>
   <div class="wrap">
     <span class="hand">Explore. Learn. Create.</span>
-    <span>© 2026 EXPLORIUM · Built for curious minds.</span>
+    <span><a href="mailto:explorium839@gmail.com">explorium839@gmail.com</a> · <a href="tel:+261344252961">+261 34 42 529 61</a></span>
+    <span>© 2026 EXPLORIUM · Site créé par <strong class="credit">Yoloops</strong></span>
   </div>
 </footer>
 
+<script src="config.js"></script>
 <script>
 (function () {
   "use strict";
   // À renseigner si le club a un formulaire externe ou un contact : apparaît après l'envoi.
-  var CONTACT_TEXT = "";   // ex. "WhatsApp du club : +261 ..." ou "contact@..."
+  var CONTACT_TEXT = "Écris-nous : explorium839@gmail.com ou +261 34 42 529 61.";
   // Adresse qui reçoit les fiches une fois le site sur GitHub (voir LISEZMOI.md) :
   // l'URL d'un script Google Apps Script (Google Sheet) ou d'un formulaire Formspree.
-  var ENDPOINT = "";
+  var ENDPOINT = (window.EXPLORIUM_CONFIG && window.EXPLORIUM_CONFIG.endpoint) || "";
   var FORM_URL = "";       // ex. lien d'un Google Form
 
   var SUBJECTS = [
@@ -703,6 +832,12 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
   var NS = "http://www.w3.org/2000/svg";
   var selected = {};
   var syncLab = function () {};
+  var selectedP = {};
+  var PROJECTS = [
+    { id: "dig", name: "Digitalisation de l'école" },
+    { id: "vis", name: "Système de reconnaissance visuelle" },
+    { id: "bus", name: "Tracker de bus scolaire" }
+  ];
 
   function icon(id, cls) {
     var s = document.createElementNS(NS, "svg");
@@ -714,7 +849,7 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
   // ---------- matières + puces du formulaire ----------
   var subjectsEl = $("#subjects"), chipsEl = $("#chips");
   SUBJECTS.forEach(function (s) {
-    var card = document.createElement("article"); card.className = "subj sk tape";
+    var card = document.createElement("article"); card.className = "subj sk tape"; card.id = "subj-" + s.id;
     var h = document.createElement("h3"); h.textContent = s.name;
     var p = document.createElement("p"); p.textContent = s.desc;
     var tags = document.createElement("div"); tags.className = "tags";
@@ -772,10 +907,13 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
     check(nom.length >= 3 && /\s/.test(nom), "nom", "Écris ton nom et ton prénom.");
     check(Number.isInteger(age) && age >= 5 && age <= 99, "age", "Indique ton âge en chiffres.");
     check(classe.length >= 1, "classe", "Indique ta classe.");
-    var many = chosenNames().length > 0;
-    $("#e-mat").textContent = many ? "" : "Choisis au moins une matière.";
-    if (!many && !first) first = $("#m-" + SUBJECTS[0].id);
-    ok = ok && many;
+    var f = currentFormule(), nm = chosenNames().length, np = chosenProjects().length, msg = "", where = "mat";
+    if (f === "Cours seulement" && nm === 0) msg = "Choisis au moins une matière.";
+    else if (f === "Projets seulement" && np === 0) { msg = "Choisis au moins un projet."; where = "proj"; }
+    else if (f === "Cours et projets" && nm + np === 0) msg = "Choisis au moins une matière ou un projet.";
+    $("#e-mat").textContent = where === "mat" ? msg : ""; $("#e-proj").textContent = where === "proj" ? msg : "";
+    if (msg && !first) first = $(where === "mat" ? "#m-" + SUBJECTS[0].id : "#p-" + PROJECTS[0].id);
+    ok = ok && !msg;
     check(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email), "email", "Écris une adresse e-mail valide, par exemple nom@exemple.com.");
     check(/^\+\d[\d\s().-]{6,}$/.test(tel), "tel", "Écris ton numéro avec l'indicatif, par exemple +33 6 12 34 56 78.");
     check($("#ok").checked, "ok", "Coche cette case pour envoyer ta fiche.");
@@ -802,20 +940,20 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
   function buildDoc() {
     return {
       nom: $("#nom").value.trim(), age: Number($("#age").value), classe: $("#classe").value.trim(),
-      matieres: chosenNames(), email: $("#email").value.trim(), tel: $("#tel").value.trim(),
+      matieres: chosenNames(), formule: currentFormule(), projets: chosenProjects(), email: $("#email").value.trim(), tel: $("#tel").value.trim(),
       remarque: rem.value.trim(), createdAt: new Date().toISOString()
     };
   }
   function sheetText(d) {
     return ["Préinscription EXPLORIUM", "Nom : " + d.nom, "Âge : " + d.age, "Classe : " + d.classe,
-      "Matières : " + d.matieres.join(", "), "E-mail : " + d.email, "Téléphone : " + d.tel,
+      "Formule : " + d.formule, "Matières : " + (d.matieres.join(", ") || "aucune"), "Projets : " + (d.projets.join(", ") || "aucun"), "E-mail : " + d.email, "Téléphone : " + d.tel,
       d.remarque ? "Remarque : " + d.remarque : ""].filter(Boolean).join("\n");
   }
   async function sendEndpoint(d) {
     try {
       var p = new URLSearchParams();
       p.set("nom", d.nom); p.set("age", d.age); p.set("classe", d.classe);
-      p.set("matieres", d.matieres.join(", ")); p.set("email", d.email); p.set("tel", d.tel);
+      p.set("matieres", d.matieres.join(", ")); p.set("formule", d.formule); p.set("projets", d.projets.join(", ")); p.set("email", d.email); p.set("tel", d.tel);
       p.set("remarque", d.remarque); p.set("_subject", "Préinscription Explorium : " + d.nom);
       var gs = /script\.google\.com/.test(ENDPOINT);
       var res = await fetch(ENDPOINT, { method: "POST", body: p, mode: gs ? "no-cors" : "cors", headers: gs ? undefined : { Accept: "application/json" } });
@@ -902,7 +1040,7 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
   // apparition au scroll : les blocs arrivent en glissant et se redressent
   (function reveal() {
     if (REDUCE || !("IntersectionObserver" in window)) return;
-    var sel = ".title,.chap,.intro,.prose p,.sub,.card,.stamps > div,.acts > div,.sheet-rules,.subj,.steps li,#regForm";
+    var sel = ".title,.chap,.intro,.prose p,.sub,.card,.stamps > div,.acts > div,.sheet-rules,.subj,.steps li,#regForm,.proj,.openbox,.contact";
     var els = [].slice.call(document.querySelectorAll(sel));
     els.forEach(function (el) {
       var idx = [].indexOf.call(el.parentNode.children, el);
@@ -985,6 +1123,68 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
       if (dots.length) requestAnimationFrame(tick); else { run = false; ctx.clearRect(0, 0, w, h); }
     }
   })();
+
+  // ---------- projets hors des cours ----------
+  var pchips = $("#pchips");
+  PROJECTS.forEach(function (pr) {
+    var lab = document.createElement("label");
+    var inp = document.createElement("input"); inp.type = "checkbox"; inp.id = "p-" + pr.id; inp.value = pr.id;
+    var span = document.createElement("span"); span.appendChild(icon(pr.id)); span.appendChild(document.createTextNode(pr.name));
+    lab.appendChild(inp); lab.appendChild(span); pchips.appendChild(lab);
+    inp.addEventListener("change", function () { setProject(pr.id, inp.checked); });
+    var btn = $("#ppick-" + pr.id);
+    if (btn) btn.addEventListener("click", function () { setProject(pr.id, !selectedP[pr.id]); });
+  });
+  function setProject(id, on) {
+    selectedP[id] = !!on;
+    $("#p-" + id).checked = !!on;
+    var b = $("#ppick-" + id);
+    if (b) { b.setAttribute("aria-pressed", on ? "true" : "false"); b.textContent = on ? "Je participe ✓" : "Je participe"; }
+    if (on) {
+      $("#e-proj").textContent = ""; $("#e-mat").textContent = "";
+      if (currentFormule() === "Cours seulement") { $("#f-both").checked = true; applyFormule(); }
+      var el = b && b.getBoundingClientRect().width ? b : $("#p-" + id).parentNode, r = el.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < innerHeight) burst(r.left + r.width / 2, r.top + r.height / 2, 14, { far: 55 });
+    }
+  }
+  function chosenProjects() { return PROJECTS.filter(function (pr) { return selectedP[pr.id]; }).map(function (pr) { return pr.name; }); }
+  function currentFormule() { var r = document.querySelector('input[name="formule"]:checked'); return r ? r.value : "Cours et projets"; }
+  function applyFormule() {
+    var f = currentFormule();
+    $("#fs-mat").classList.toggle("off", f === "Projets seulement");
+    $("#fs-proj").classList.toggle("off", f === "Cours seulement");
+    $("#fhint").textContent = f === "Cours seulement" ? "Choisis au moins une matière." : f === "Projets seulement" ? "Choisis au moins un projet. Tu n'as aucun cours à suivre." : "Choisis au moins une matière ou un projet.";
+  }
+  [].forEach.call(document.querySelectorAll('input[name="formule"]'), function (r) { r.addEventListener("change", applyFormule); });
+  applyFormule();
+  var projOnly = $("#projOnly");
+  if (projOnly) projOnly.addEventListener("click", function () { $("#f-proj").checked = true; applyFormule(); });
+
+  // aller à une matière depuis une boule
+  function flashCard(id) {
+    var c = $("#subj-" + id); if (!c) return;
+    c.classList.remove("flash"); void c.offsetWidth; c.classList.add("flash");
+    setTimeout(function () { c.classList.remove("flash"); }, 1800);
+  }
+  function goSubject(id) {
+    var c = $("#subj-" + id) || $("#matieres");
+    c.scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "center" });
+    setTimeout(function () { flashCard(id); }, REDUCE ? 0 : 550);
+  }
+  function flashFromHash() { var m = /^#subj-(\w+)$/.exec(location.hash); if (m) setTimeout(function () { flashCard(m[1]); }, 600); }
+  addEventListener("hashchange", flashFromHash); flashFromHash();
+
+  // boutons « Copier » des contacts
+  [].forEach.call(document.querySelectorAll("[data-copy]"), function (btn) {
+    btn.addEventListener("click", async function () {
+      var st = $("#contactStatus"), v = btn.getAttribute("data-copy");
+      try { await navigator.clipboard.writeText(v); st.textContent = "Copié : " + v; }
+      catch (e) {
+        var el = btn.closest(".crow").querySelector(".cval"), r = document.createRange(); r.selectNodeContents(el);
+        var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); st.textContent = "Sélectionné : copie-le avec ton clavier.";
+      }
+    });
+  });
 
   // bascule jour / nuit
   (function theme() {
@@ -1073,8 +1273,8 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
     ];
     var box = document.createElement("div"); box.className = "lab";
     box.setAttribute("role", "group");
-    box.setAttribute("aria-label", "Les cinq domaines du club. Attrape-les, lance-les, touche-en un pour l'ajouter à ta fiche.");
-    var tip = document.createElement("span"); tip.className = "tip"; tip.setAttribute("aria-hidden", "true"); tip.textContent = "attrape-moi, lance-moi !";
+    box.setAttribute("aria-label", "Les cinq domaines du club. Attrape-les et lance-les. Touches-en un pour voir la matière.");
+    var tip = document.createElement("span"); tip.className = "tip"; tip.setAttribute("aria-hidden", "true"); tip.textContent = "touche une boule !";
     box.appendChild(tip);
     var sh = document.createElement("button"); sh.type = "button"; sh.className = "shake"; sh.textContent = "↻ secouer";
     box.appendChild(sh);
@@ -1153,24 +1353,24 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
     function wake() { calm = 0; last = 0; kick(); }
 
     function label(b) {
-      b.el.setAttribute("aria-label", b.name + (selected[b.id] ? " : choisi, touche pour retirer" : " : touche pour l'ajouter à ta fiche"));
+      b.el.setAttribute("aria-label", b.name + " : voir la matière");
     }
     syncLab = function () {
       bodies.forEach(function (b) {
         if (b.id === "q") return;
-        b.el.setAttribute("aria-pressed", selected[b.id] ? "true" : "false"); label(b);
+        b.el.setAttribute("data-on", selected[b.id] ? "true" : "false");
       });
     };
     bodies.forEach(function (b) {
       if (b.id === "q") b.el.setAttribute("aria-label", "Une question pour toi : aller à la section");
-      else { b.el.setAttribute("aria-pressed", "false"); label(b); }
+      else label(b);
     });
 
     function tap(b) {
       var r = b.el.getBoundingClientRect();
       burst(r.left + r.width / 2, r.top + r.height / 2, b.id === "q" ? 14 : 12, { far: 52 });
       if (b.id === "q") { var q = document.querySelector("#question"); if (q) q.scrollIntoView({ behavior: "smooth" }); return; }
-      setSubject(b.id, !selected[b.id]);
+      goSubject(b.id);
       b.vy = -520; wake();
     }
     bodies.forEach(function (b) {
@@ -1239,12 +1439,16 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
       var n = docs.filter(function (d) { return (d.matieres || []).indexOf(s.name) >= 0; }).length;
       var sp = document.createElement("span"); sp.textContent = s.name + " : " + n; stats.appendChild(sp);
     });
+    PROJECTS.forEach(function (pr) {
+      var n = docs.filter(function (d) { return (d.projets || []).indexOf(pr.name) >= 0; }).length;
+      var sp = document.createElement("span"); sp.textContent = "Projet " + pr.name + " : " + n; stats.appendChild(sp);
+    });
     var body = $("#rows"); body.textContent = "";
     docs.forEach(function (d) {
       var tr = document.createElement("tr");
       tr.appendChild(td(d.createdAt ? new Date(d.createdAt).toLocaleDateString("fr-FR") : ""));
       tr.appendChild(td(d.nom)); tr.appendChild(td(d.age)); tr.appendChild(td(d.classe));
-      tr.appendChild(td((d.matieres || []).join(", ")));
+      tr.appendChild(td(d.formule || "")); tr.appendChild(td((d.matieres || []).join(", "))); tr.appendChild(td((d.projets || []).join(", ")));
       tr.appendChild(td([d.email, d.tel].filter(Boolean).join("\n")));
       tr.lastChild.style.whiteSpace = "pre-line";
       var act = document.createElement("td"), b = document.createElement("button");
@@ -1259,9 +1463,9 @@ html { scrollbar-color: var(--ink-soft) var(--paper); }
   $("#csv").addEventListener("click", async function () {
     var st = $("#csvStatus");
     function q(v) { return '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"'; }
-    var lines = [["Reçue le", "Nom", "Âge", "Classe", "Matières", "E-mail", "Téléphone", "Remarque"].map(q).join(",")];
+    var lines = [["Reçue le", "Nom", "Âge", "Classe", "Matières", "E-mail", "Téléphone", "Remarque", "Formule", "Projets"].map(q).join(",")];
     docs.forEach(function (d) {
-      lines.push([d.createdAt, d.nom, d.age, d.classe, (d.matieres || []).join(" | "), d.email, d.tel, d.remarque].map(q).join(","));
+      lines.push([d.createdAt, d.nom, d.age, d.classe, (d.matieres || []).join(" | "), d.email, d.tel, d.remarque, d.formule, (d.projets || []).join(" | ")].map(q).join(","));
     });
     try {
       var dl = await window.claude.use("downloads");
